@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using ToDoList.DataAccess.ViewModels.Entities;
 
-namespace ToDoList.Entities.Configurations;
+namespace ToDoList.DataAccess.ViewModels.Entities.Configurations;
 
 public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {

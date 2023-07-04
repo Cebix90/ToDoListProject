@@ -1,4 +1,4 @@
-﻿namespace ToDoList.Entities;
+﻿namespace ToDoList.DataAccess.ViewModels.Entities;
 
 public class User
 {
@@ -7,7 +7,7 @@ public class User
     public string Password { get; set; }
     public string NickName { get; set; }
     public string Country { get; set; }
-    public List<Task> Task { get; set; } = new List<Task>();
+    public List<WorkTask> Task { get; set; } = new List<WorkTask>();
     public List<Comment> Comments { get; set; } = new List<Comment>();
 
 }
