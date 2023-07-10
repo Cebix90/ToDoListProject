@@ -5,10 +5,9 @@ namespace ToDoList.DataBase;
 
 public class ToDoListDbContext : DbContext
 {
-    public ToDoListDbContext(DbContextOptions<ToDoListDbContext> options) : base(options)
-    {
+    public ToDoListDbContext() { }
 
-    }
+    public ToDoListDbContext(DbContextOptions<ToDoListDbContext> options) : base(options) { }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Comment> Comments { get; set; }
     public DbSet<Tag> Tags { get; set; }
