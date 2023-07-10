@@ -1,17 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ToDoList.DataBase.Entities;
 
-namespace ToDoList.DataAccess.ViewModels.Entities;
+namespace ToDoList.DataBase;
 
-public class ToDoListContext : DbContext
+public class ToDoListDbContext : DbContext
 {
-    public ToDoListContext(DbContextOptions<ToDoListContext> options) : base(options)
+    public ToDoListDbContext(DbContextOptions<ToDoListDbContext> options) : base(options)
     {
 
     }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Comment> Comments { get; set; }
     public DbSet<Tag> Tags { get; set; }
-    public DbSet<WorkTask> Tasks { get; set; }
+    public DbSet<WorkTask> WorkTasks { get; set; }
     public DbSet<User> Users { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

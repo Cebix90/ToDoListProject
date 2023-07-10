@@ -1,5 +1,5 @@
 ﻿using System.Windows.Controls;
-using ToDoList.DataAccess.ViewModels.Pages;
+using ToDoList.Core.ViewModels.Pages;
 
 namespace ToDoList
 {

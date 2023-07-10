@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ToDoList.DataAccess.ViewModels.Entities;
 
-namespace ToDoList.DataAccess.ViewModels.Entities.Configurations;
-
+namespace ToDoList.DataBase.Entities.Configurations;
 public class CommentConfiguration : IEntityTypeConfiguration<Comment>
 {
     public void Configure(EntityTypeBuilder<Comment> builder)

@@ -1,9 +1,9 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Windows.Input;
+using ToDoList.DataAccess;
 using ToDoList.DataAccess.ViewModels.Entities;
 
-namespace ToDoList.DataAccess.ViewModels.Pages;
+namespace ToDoList.Core.ViewModels.Pages;
 
 public class WorkTasksPageViewModel : BaseViewModel
 {
@@ -20,6 +20,8 @@ public class WorkTasksPageViewModel : BaseViewModel
         DeleteSelectedTasksCommand = new RelayCommand(DeleteSelectedTasks);
     }
 
+    
+
     private void AddNewTask()
     {
         var newTask = new WorkTask
@@ -28,14 +30,15 @@ public class WorkTasksPageViewModel : BaseViewModel
             Description = NewWorkTaskDescription,
             StartDate = DateTime.Now
         };
-
+        
+        
         WorkTaskList.Add(newTask);
-
+        
         NewWorkTaskTitle = string.Empty;
         NewWorkTaskDescription = string.Empty;
 
-        /*OnPropertyChanged(nameof(NewWorkTaskTitle));
-        OnPropertyChanged(nameof(NewWorkTaskDescription));*/
+        //OnPropertyChanged(nameof(NewWorkTaskTitle));
+        //OnPropertyChanged(nameof(NewWorkTaskDescription));
     }
 
     private void AddWorkTaskEndDate()

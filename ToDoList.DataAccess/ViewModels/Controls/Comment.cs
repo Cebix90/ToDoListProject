@@ -8,6 +8,4 @@ public class Comment
     public Guid AuthorId { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime? UpdatedDate { get; set; }
-    public WorkTask Task { get; set; }
-    public int TaskId { get; set; }
 }

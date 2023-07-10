@@ -1,4 +1,4 @@
-﻿namespace ToDoList.DataAccess.ViewModels.Entities;
+﻿namespace ToDoList.DataBase.Entities;
 
 public class Tag
 {
