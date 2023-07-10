@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ToDoList.DataBase.Entities.Configurations;
+namespace ToDoList.Database.Entities.Configurations;
 public class CommentConfiguration : IEntityTypeConfiguration<Comment>
 {
     public void Configure(EntityTypeBuilder<Comment> builder)
@@ -13,7 +13,8 @@ public class CommentConfiguration : IEntityTypeConfiguration<Comment>
 
         builder.HasOne(c => c.Task)
             .WithMany(t => t.Comments)
-            .HasForeignKey(c => c.TaskId);
+            .HasForeignKey(c => c.TaskId)
+            .IsRequired(false);
 
         builder.Property(x => x.CreatedDate)
             .HasDefaultValueSql("getutcdate()");

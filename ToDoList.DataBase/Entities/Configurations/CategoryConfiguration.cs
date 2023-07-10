@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ToDoList.DataBase.Entities.Configurations;
+namespace ToDoList.Database.Entities.Configurations;
 
 public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {
@@ -9,9 +9,10 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
         builder.HasMany(c => c.Tasks)
             .WithOne(t => t.Category)
-            .HasForeignKey(t => t.CategoryId);
+            .HasForeignKey(t => t.CategoryId)
+            .IsRequired(false);
 
-        builder.Property(x => x.Value)
-            .IsRequired();
+        /*builder.Property(x => x.Value)
+            .IsRequired();*/
     }
 }

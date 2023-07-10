@@ -1,5 +1,6 @@
 ﻿using System.Windows;
-using ToDoList.DataBase;
+using ToDoList.Core;
+using ToDoList.Database;
 
 namespace ToDoList
 {
@@ -15,6 +16,10 @@ namespace ToDoList
             var database = new ToDoListDbContext();
 
             database.Database.EnsureCreated();
+
+            DatabaseLocator.Database = database;
+            
+            new Seeds(database).SeedData();
         }
     }
 }

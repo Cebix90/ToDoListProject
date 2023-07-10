@@ -1,4 +1,4 @@
-﻿namespace ToDoList.DataBase.Entities;
+﻿namespace ToDoList.Database.Entities;
 
 public class Tag
 {

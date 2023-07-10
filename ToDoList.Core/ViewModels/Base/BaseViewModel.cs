@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ToDoList.DataAccess;
+namespace ToDoList.Core.Models.Base;
 
 public class BaseViewModel :INotifyPropertyChanged
 {

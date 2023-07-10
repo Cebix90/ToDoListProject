@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace ToDoList.DataAccess;
+namespace ToDoList.Core.Helpers;
 
 public class RelayCommand : ICommand
 {

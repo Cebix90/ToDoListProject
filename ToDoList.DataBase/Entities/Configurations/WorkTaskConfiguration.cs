@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ToDoList.DataBase.Entities.Configurations;
+namespace ToDoList.Database.Entities.Configurations;
 
 public class WorkTaskConfiguration : IEntityTypeConfiguration<WorkTask>
 {

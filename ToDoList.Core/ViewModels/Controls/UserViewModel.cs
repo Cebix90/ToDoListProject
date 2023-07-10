@@ -1,6 +1,6 @@
-﻿namespace ToDoList.DataAccess.ViewModels.Entities;
+﻿namespace ToDoList.Core.Models.Controls;
 
-public class User
+public class UserViewModel
 {
     public Guid Id { get; set; }
     public string Email { get; set; }

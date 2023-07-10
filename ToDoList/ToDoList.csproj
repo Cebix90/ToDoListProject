@@ -16,8 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ToDoList.Core\ToDoList.Core.csproj" />
-    <ProjectReference Include="..\ToDoList.DataAccess\ToDoList.Core.csproj" />
-    <ProjectReference Include="..\ToDoList.DataBase\ToDoList.DataBase.csproj" />
+    <ProjectReference Include="..\ToDoList.DataBase\ToDoList.Database.csproj" />
   </ItemGroup>
 
 </Project>

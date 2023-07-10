@@ -1,6 +1,8 @@
-﻿namespace ToDoList.DataAccess.ViewModels.Entities;
+﻿using ToDoList.Core.Models.Base;
 
-public class WorkTask : BaseViewModel
+namespace ToDoList.Core.Models.Controls;
+
+public class WorkTaskViewModel : BaseViewModel
 {
     public int Id { get; set; }
     public string Title { get; set; }

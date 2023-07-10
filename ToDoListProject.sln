@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoList", "ToDoList\ToDoLi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoList.Core", "ToDoList.Core\ToDoList.Core.csproj", "{4EB3EB2D-083B-4DD8-8EDD-E07B47338596}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoList.DataBase", "ToDoList.DataBase\ToDoList.DataBase.csproj", "{03A68F51-8EA2-48D0-9E29-73B37B150AF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoList.Database", "ToDoList.DataBase\ToDoList.Database.csproj", "{03A68F51-8EA2-48D0-9E29-73B37B150AF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

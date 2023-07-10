@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ToDoList.DataBase.Entities;
+using ToDoList.Database.Entities;
 
-namespace ToDoList.DataBase;
+namespace ToDoList.Database;
 
 public class ToDoListDbContext : DbContext
 {
@@ -18,5 +18,10 @@ public class ToDoListDbContext : DbContext
     {
         //new AddressConfiguration().Configure(modelBuilder.Entity<Address>());
         modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlite($"Data Source=ToDoList.db");
     }
 }
