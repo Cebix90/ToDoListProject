@@ -10,5 +10,5 @@ public class WorkTaskViewModel : BaseViewModel
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }
     public bool IsSelected { get; set; }
-
+    public bool IsFinalized { get; set; }
 }

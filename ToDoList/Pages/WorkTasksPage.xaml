@@ -12,15 +12,16 @@
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock>Your current tasks:</TextBlock>
-            <ScrollViewer Height="200" Width="400" Margin="0 10">
-                <ItemsControl ItemsSource="{Binding WorkTaskList}" Margin ="10">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <local:WorkTask/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
+            <DataGrid ItemsSource="{Binding WorkTaskList}" Margin ="10" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn Header="Selected" Binding="{Binding IsSelected}"/>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
+                    <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
+                    <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}"/>
+                    <DataGridTextColumn Header="End Date" Binding="{Binding EndDate}"/>
+                </DataGrid.Columns>
+            </DataGrid>
 
             <TextBlock Style="{StaticResource DefaultTextStyle}">Task Title</TextBlock>
             <TextBox Text="{Binding NewWorkTaskTitle, Mode=TwoWay}"
@@ -33,13 +34,18 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <Button Command="{Binding AddNewTaskCommand}"
                         Style="{StaticResource DefaultButtonStyle}"
                         Content="Add"></Button>
-                <Button Command="{Binding DeleteSelectedTasksCommand}"
+                <Button Command="{Binding FinishSelectedTasksCommand}"
                         Grid.Column="1"
+                        Style="{StaticResource DefaultButtonStyle}"
+                        Content="End"></Button>
+                <Button Command="{Binding DeleteSelectedTasksCommand}"
+                        Grid.Column="2"
                         Style="{StaticResource DefaultButtonStyle}"
                         Content="Remove"></Button>
             </Grid>

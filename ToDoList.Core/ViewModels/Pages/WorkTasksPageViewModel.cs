@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using ToDoList.Core.Helpers;
 using ToDoList.Core.Models.Base;
@@ -15,25 +16,36 @@ public class WorkTasksPageViewModel : BaseViewModel
 
     public ICommand AddNewTaskCommand { get; set; }
     public ICommand DeleteSelectedTasksCommand { get; set; }
+    public ICommand FinishSelectedTasksCommand { get; set; }
 
     public WorkTasksPageViewModel()
     {
         AddNewTaskCommand = new RelayCommand(AddNewTask);
         DeleteSelectedTasksCommand = new RelayCommand(DeleteSelectedTasks);
-        foreach (var task in DatabaseLocator.Database.WorkTasks.ToList())
+        FinishSelectedTasksCommand = new RelayCommand(FinishSelectedTask);
+
+        LoadTasksFromDatabase();
+    }
+
+    private void LoadTasksFromDatabase()
+    {
+        var tasks = DatabaseLocator.Database.WorkTasks.ToList();
+
+        foreach (var task in tasks)
         {
-            WorkTaskList.Add(new WorkTaskViewModel
+            var viewModel = new WorkTaskViewModel
             {
                 Id = task.Id,
                 Title = task.Title,
                 Description = task.Description,
                 StartDate = task.StartDate,
-                EndDate = task.EndDate
-            });
+                EndDate = task.EndDate,
+                IsFinalized = task.IsFinalized
+            };
+
+            WorkTaskList.Add(viewModel);
         }
     }
-
-    
 
     private void AddNewTask()
     {
@@ -48,6 +60,7 @@ public class WorkTasksPageViewModel : BaseViewModel
 
         DatabaseLocator.Database.WorkTasks.Add(new WorkTask
         {
+            Id = newTask.Id,
             Title = newTask.Title,
             Description = newTask.Description,
             StartDate = newTask.StartDate
@@ -55,17 +68,47 @@ public class WorkTasksPageViewModel : BaseViewModel
 
         DatabaseLocator.Database.SaveChanges();
 
+        var refreshedTasks = DatabaseLocator.Database.WorkTasks.ToList();
+        WorkTaskList.Clear();
+        foreach (var task in refreshedTasks)
+        {
+            var viewModel = new WorkTaskViewModel
+            {
+                Id = task.Id,
+                Title = task.Title,
+                Description = task.Description,
+                StartDate = task.StartDate,
+                EndDate = task.EndDate
+            };
+
+            WorkTaskList.Add(viewModel);
+        }
+
         NewWorkTaskTitle = string.Empty;
         NewWorkTaskDescription = string.Empty;
     }
 
-    private void AddWorkTaskEndDate()
+    private void FinishSelectedTask()
     {
-        var lastTask = WorkTaskList.LastOrDefault();
-        if (lastTask != null)
+        var selectedTasks = WorkTaskList.Where(x => x.IsSelected).ToList();
+
+        foreach (var task in selectedTasks)
         {
-            lastTask.EndDate = DateTime.Now;
+            if (!task.IsFinalized)
+            {
+                task.EndDate = DateTime.Now;
+                task.IsFinalized = true;
+
+                var foundEntity = DatabaseLocator.Database.WorkTasks.FirstOrDefault(x => x.Id == task.Id);
+                if (foundEntity != null)
+                {
+                    foundEntity.EndDate = task.EndDate;
+                    foundEntity.IsFinalized = true;
+                }
+            }
         }
+
+        DatabaseLocator.Database.SaveChanges();
     }
 
     private void DeleteSelectedTasks()
@@ -83,6 +126,6 @@ public class WorkTasksPageViewModel : BaseViewModel
             }
         }
 
-        var x = DatabaseLocator.Database.SaveChanges();
+        DatabaseLocator.Database.SaveChanges();
     }
 }

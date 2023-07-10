@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToDoList.Database;
 
@@ -10,9 +11,11 @@ using ToDoList.Database;
 namespace ToDoList.Database.Migrations
 {
     [DbContext(typeof(ToDoListDbContext))]
-    partial class ToDoListDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230710220215_add-migation IsFinalizedAddedToWorkTask")]
+    partial class addmigationIsFinalizedAddedToWorkTask
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.8");
@@ -29,7 +32,7 @@ namespace ToDoList.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("ToDoList.Database.Entities.Comment", b =>
@@ -63,7 +66,7 @@ namespace ToDoList.Database.Migrations
 
                     b.HasIndex("TaskId");
 
-                    b.ToTable("Comments", (string)null);
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("ToDoList.Database.Entities.Tag", b =>
@@ -78,7 +81,7 @@ namespace ToDoList.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags", (string)null);
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("ToDoList.Database.Entities.User", b =>
@@ -105,7 +108,7 @@ namespace ToDoList.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ToDoList.Database.Entities.WorkTask", b =>
@@ -151,7 +154,7 @@ namespace ToDoList.Database.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("WorkTasks", (string)null);
+                    b.ToTable("WorkTasks");
                 });
 
             modelBuilder.Entity("ToDoList.Database.Entities.Comment", b =>

@@ -11,6 +11,7 @@ public class WorkTask
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }
     public bool IsSelected { get; set; }
+    public bool IsFinalized { get; set; }
     public User? User { get; set; }
     public Guid? UserId { get; set; }
     public List<Comment> Comments { get; set; } = new List<Comment>();
