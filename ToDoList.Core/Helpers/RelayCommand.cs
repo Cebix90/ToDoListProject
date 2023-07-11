@@ -8,7 +8,7 @@ public class RelayCommand : ICommand
 
     public event EventHandler CanExecuteChanged;
 
-    public RelayCommand(Action action)    
+    public RelayCommand(Action action)
     {
         _action = action;
     }
@@ -21,6 +21,4 @@ public class RelayCommand : ICommand
     {
         _action();
     }
-
-    
 }

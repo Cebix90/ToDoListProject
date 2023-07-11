@@ -12,11 +12,4 @@ public class BaseViewModel : INotifyPropertyChanged
         PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    public bool AuthenticateUser(string email, string password, ToDoListDbContext context)
-    {
-        bool isAuthenticated = context.Users.Any(u => u.Email == email && u.Password == password);
-        return isAuthenticated;
-    }
-
-
 }

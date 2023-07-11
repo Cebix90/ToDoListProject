@@ -5,8 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoList.Pages"
         mc:Ignorable="d"
-        Title="LoginPage" Height="450" Width="800">
+    Title="ToDoList" Height="550" Width="800" WindowStyle="ToolWindow" ResizeMode="NoResize">
+    <Window.Effect>
+        <DropShadowEffect/>
+    </Window.Effect>
     <Grid>
-        
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="#FF3355E0" Offset="1"/>
+                <GradientStop Color="#FF190F50" Offset="0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.RowSpan="2" Text="ToDoList" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Center" 
+                           Foreground="White" 
+                           FontSize="50"
+                           FontWeight="Bold"/>
+
+                <StackPanel Grid.Row="2">
+                    <TextBlock Text="EMAIL" Foreground="White" HorizontalAlignment="Center" ></TextBlock>
+                    <TextBox Margin="10" Text="{Binding Email}" Height="30" Width="300" FontSize="15"/>
+                </StackPanel>
+                <StackPanel Grid.Row="3">
+                    <TextBlock Text="PASSWORD" Foreground="White" HorizontalAlignment="Center"></TextBlock>
+                    <TextBox Margin="10" Text="{Binding Password}" Height="30" Width="300"  FontSize="15"></TextBox>
+                </StackPanel>
+                <Button Grid.Row="4" Command="{Binding LoginCommand}" Margin="10" Height="40" Width="300" Content="LOGIN" Background="White" Foreground="#FF3355E0" FontSize="25" FontWeight="Bold"></Button>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

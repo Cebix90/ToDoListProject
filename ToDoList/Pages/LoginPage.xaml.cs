@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using ToDoList.Core.ViewModels.Pages;
+using ToDoList.Database;
 
 namespace ToDoList.Pages
 {
@@ -19,9 +10,33 @@ namespace ToDoList.Pages
     /// </summary>
     public partial class LoginPage : Window
     {
+        private LoginPageViewModel loginPageViewModel;
         public LoginPage()
         {
             InitializeComponent();
+            
+            loginPageViewModel = new LoginPageViewModel(new ToDoListDbContext());
+            
+            loginPageViewModel.LoginSuccess += LoginPageViewModel_LoginSuccess;
+            loginPageViewModel.LoginFailed += LoginPageViewModel_LoginFailed;
+            
+            DataContext = loginPageViewModel;
+        }
+
+        private void LoginPageViewModel_LoginSuccess(object sender, EventArgs e)
+        {
+            var window = new WorkTasksPage();
+            if (Application.Current.MainWindow != null)
+            {
+                Application.Current.MainWindow.Close();
+            }
+            Application.Current.MainWindow = window;
+            window.Show();
+        }
+
+        private void LoginPageViewModel_LoginFailed(object sender, EventArgs e)
+        {
+            MessageBox.Show("Login Failed");
         }
     }
 }
