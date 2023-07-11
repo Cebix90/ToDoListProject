@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using ToDoList.Core.Helpers;
 using ToDoList.Core.Models.Base;
