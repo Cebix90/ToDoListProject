@@ -9,6 +9,7 @@ namespace ToDoList.Core.ViewModels.Pages
     {
         public event EventHandler LoginSuccess;
         public event EventHandler LoginFailed;
+        public event EventHandler SignUpRequested;
 
         private string _email;
         private string _password;
@@ -17,12 +18,13 @@ namespace ToDoList.Core.ViewModels.Pages
         private readonly AuthenticationCommands _authcommands;
 
         public ICommand LoginCommand { get; set; }
+        public ICommand SignUpCommand { get; set; }
         //public ICommand LoginComm { get; }
 
         public LoginPageViewModel(ToDoListDbContext context)
         {
             _context = context;
-            //LoginComm = new CommandBlueprint(Login);
+            SignUpCommand = new RelayCommand(NavigateToSignUp);
             LoginCommand = new RelayCommand(Login);
             _authcommands = new AuthenticationCommands(_context);
         }
@@ -93,14 +95,22 @@ namespace ToDoList.Core.ViewModels.Pages
 
         private string HashPassword(string password)
         {
-            // Tutaj należy użyć odpowiedniej biblioteki lub algorytmu haszującego
-            // w celu zahashowania hasła. Przykład poniżej używa SHA256.
+            // Check if the password is null
+            if (password == null)
+            {
+                return null;
+            }
 
             using (var sha256 = System.Security.Cryptography.SHA256.Create())
             {
                 var hashedBytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
                 return System.Convert.ToBase64String(hashedBytes);
             }
+        }
+
+        private void NavigateToSignUp()
+        {
+            SignUpRequested?.Invoke(this, EventArgs.Empty);
         }
     }
 }

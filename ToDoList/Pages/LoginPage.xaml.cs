@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using ToDoList.Core.ViewModels.Pages;
 using ToDoList.Database;
 
@@ -21,6 +20,8 @@ namespace ToDoList.Pages
 
             _loginPageViewModel.LoginSuccess += LoginPageViewModel_LoginSuccess;
             _loginPageViewModel.LoginFailed += LoginPageViewModel_LoginFailed;
+            _loginPageViewModel.SignUpRequested += LoginPageViewModel_SignUpRequested;
+
 
             DataContext = _loginPageViewModel;
 
@@ -33,18 +34,18 @@ namespace ToDoList.Pages
         }
         private void LoginPageViewModel_LoginSuccess(object sender, EventArgs e)
         {
-            var window = new WorkTasksPage();
+            var workTaskPage = new WorkTasksPage();
             if (Application.Current.MainWindow != null)
             {
                 Application.Current.MainWindow.Close();
             }
-            Application.Current.MainWindow = window;
-            window.Show();
+            Application.Current.MainWindow = workTaskPage;
+            workTaskPage.Show();
         }
 
         private void LoginPageViewModel_LoginFailed(object sender, EventArgs e)
         {
-            MessageBox.Show("Login Failed");
+            MessageBox.Show("Wrong Email or Password");
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
@@ -53,6 +54,13 @@ namespace ToDoList.Pages
             {
                 _loginPageViewModel.Password = passwordBox.Password;
             }
+        }
+
+        private void LoginPageViewModel_SignUpRequested(object sender, EventArgs e)
+        {
+            var signUpPage = new SignUpPage();
+            signUpPage.Show();
+            this.Close();
         }
     }
 }
