@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 using ToDoList.Core.ViewModels.Pages;
 using ToDoList.Database;
 
@@ -10,19 +12,25 @@ namespace ToDoList.Pages
     /// </summary>
     public partial class LoginPage : Window
     {
-        private LoginPageViewModel loginPageViewModel;
+        private readonly LoginPageViewModel _loginPageViewModel;
         public LoginPage()
         {
             InitializeComponent();
-            
-            loginPageViewModel = new LoginPageViewModel(new ToDoListDbContext());
-            
-            loginPageViewModel.LoginSuccess += LoginPageViewModel_LoginSuccess;
-            loginPageViewModel.LoginFailed += LoginPageViewModel_LoginFailed;
-            
-            DataContext = loginPageViewModel;
+
+            _loginPageViewModel = new LoginPageViewModel(new ToDoListDbContext());
+
+            _loginPageViewModel.LoginSuccess += LoginPageViewModel_LoginSuccess;
+            _loginPageViewModel.LoginFailed += LoginPageViewModel_LoginFailed;
+
+            DataContext = _loginPageViewModel;
+
+            Loaded += LoginPage_Loaded;
         }
 
+        private void LoginPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            PasswordBox.PasswordChanged += PasswordBox_PasswordChanged;
+        }
         private void LoginPageViewModel_LoginSuccess(object sender, EventArgs e)
         {
             var window = new WorkTasksPage();
@@ -37,6 +45,14 @@ namespace ToDoList.Pages
         private void LoginPageViewModel_LoginFailed(object sender, EventArgs e)
         {
             MessageBox.Show("Login Failed");
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (sender is PasswordBox passwordBox)
+            {
+                _loginPageViewModel.Password = passwordBox.Password;
+            }
         }
     }
 }

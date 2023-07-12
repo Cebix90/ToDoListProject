@@ -43,7 +43,7 @@
                 </StackPanel>
                 <StackPanel Grid.Row="3">
                     <TextBlock Text="PASSWORD" Foreground="White" HorizontalAlignment="Center"></TextBlock>
-                    <TextBox Margin="10" Text="{Binding Password}" Height="30" Width="300"  FontSize="15"></TextBox>
+                    <PasswordBox x:Name="PasswordBox" PasswordChanged="PasswordBox_PasswordChanged" Height="30" Width="300" FontSize="15"/>
                 </StackPanel>
                 <Button Grid.Row="4" Command="{Binding LoginCommand}" Margin="10" Height="40" Width="300" Content="LOGIN" Background="White" Foreground="#FF3355E0" FontSize="25" FontWeight="Bold"></Button>
             </Grid>
