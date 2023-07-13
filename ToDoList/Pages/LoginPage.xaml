@@ -40,7 +40,7 @@
 
                 <StackPanel Grid.Row="2">
                     <TextBlock Text="EMAIL" Foreground="White" HorizontalAlignment="Center" ></TextBlock>
-                    <TextBox Margin="10" Text="{Binding Email}" Height="30" Width="300" FontSize="15"/>
+                    <TextBox x:Name="EmailTextBox" Margin="10" Text="{Binding Email}" Height="30" Width="300" FontSize="15"/>
                 </StackPanel>
                 <StackPanel Grid.Row="3">
                     <TextBlock Text="PASSWORD" Foreground="White" HorizontalAlignment="Center"></TextBlock>

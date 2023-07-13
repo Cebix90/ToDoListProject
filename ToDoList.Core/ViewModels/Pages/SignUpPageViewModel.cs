@@ -13,6 +13,7 @@ public class SignUpPageViewModel : BaseViewModel
     public event EventHandler NickNameMustBeEntered;
     public event EventHandler PasswordIsToShort;
     public event EventHandler EmailIsNotInCorrectForm;
+    public event EventHandler SubmitSuccessfully;
 
     private string _email;
     private string _password;
@@ -150,6 +151,8 @@ public class SignUpPageViewModel : BaseViewModel
         });
 
         DatabaseLocator.Database.SaveChanges();
+
+        SubmitSuccessfully?.Invoke(this, EventArgs.Empty);
 
         ClearFields();
     }

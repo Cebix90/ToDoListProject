@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Mime;
 using System.Windows;
 using System.Windows.Controls;
 using ToDoList.Core.ViewModels.Pages;
@@ -46,6 +47,8 @@ namespace ToDoList.Pages
         private void LoginPageViewModel_LoginFailed(object sender, EventArgs e)
         {
             MessageBox.Show("Wrong Email or Password");
+            EmailTextBox.Text = "";
+            PasswordBox.Password = "";
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)

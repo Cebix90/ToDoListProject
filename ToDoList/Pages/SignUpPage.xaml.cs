@@ -21,6 +21,7 @@ namespace ToDoList.Pages
             _signUpPageViewModel.NickNameMustBeEntered += SignUpPageViewModel_NickNameMustBeEntered;
             _signUpPageViewModel.PasswordIsToShort += SignUpPageViewModel_PasswordIsToShort;
             _signUpPageViewModel.EmailIsNotInCorrectForm += SignUpPageViewModel_EmailIsNotInCorrectForm;
+            _signUpPageViewModel.SubmitSuccessfully += SignUpPageViewModel_SubmitSuccessfully;
 
             DataContext = _signUpPageViewModel;
         }
@@ -55,6 +56,11 @@ namespace ToDoList.Pages
         private void SignUpPageViewModel_NickNameMustBeEntered(object sender, EventArgs e)
         {
             MessageBox.Show("Nickname must be entered.");
+        }
+
+        private void SignUpPageViewModel_SubmitSuccessfully(object sender, EventArgs e)
+        {
+            MessageBox.Show("You have successfully signed up.");
         }
     }
 
