@@ -10,6 +10,9 @@ namespace ToDoList.Core.ViewModels;
 
 public class WorkTasksPageViewModel : BaseViewModel
 {
+    public NewWorkTaskPageViewModel NewWorkTaskPageViewModel { get; private set; }
+
+
     public event EventHandler NewWorkTaskRequested;
 
     public ObservableCollection<WorkTaskViewModel> WorkTaskList { get; set; } = new ObservableCollection<WorkTaskViewModel>();
@@ -81,8 +84,12 @@ public class WorkTasksPageViewModel : BaseViewModel
 
     private void NavigateToNewWorkTaskPage()
     {
+        NewWorkTaskPageViewModel = new NewWorkTaskPageViewModel();
+        NewWorkTaskPageViewModel.TaskAdded += HandleTaskAdded;
         NewWorkTaskRequested?.Invoke(this, EventArgs.Empty);
     }
+
+
 
 
     private void FinishSelectedTask()
