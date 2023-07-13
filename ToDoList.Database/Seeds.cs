@@ -71,7 +71,8 @@ public class Seeds
             new Tag { Value = "Średni priorytet" },
             new Tag { Value = "Niski priorytet" },
             new Tag { Value = "Pilne" },
-            new Tag { Value = "Oczekujące" }
+            new Tag { Value = "Oczekujące" },
+            new Tag { Value = "Zakończone" }
         };
 
         _context.Tags.AddRange(tags);

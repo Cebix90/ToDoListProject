@@ -8,6 +8,7 @@
         <Setter Property="Padding" Value="12"></Setter>
         <Setter Property="FontSize" Value="20"></Setter>
         <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Margin" Value="10 0 0 0"></Setter>
 
     </Style>
 

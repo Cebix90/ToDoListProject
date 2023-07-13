@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using ToDoList.Core.Models;
+using ToDoList.Core.ViewModels;
 
 namespace ToDoList
 {
@@ -8,11 +8,24 @@ namespace ToDoList
     /// </summary>
     public partial class WorkTasksPage : Window
     {
+        private readonly WorkTasksPageViewModel _workTasksPageViewModel;
         public WorkTasksPage()
         {
             InitializeComponent();
 
-            DataContext = new WorkTasksPageViewModel();
+            _workTasksPageViewModel = new WorkTasksPageViewModel();
+
+            _workTasksPageViewModel.NewWorkTaskRequested += WorkTasksPageViewModel_NewWorkTaskRequested;
+
+            DataContext = _workTasksPageViewModel;
+        }
+
+        private void WorkTasksPageViewModel_NewWorkTaskRequested(object sender, System.EventArgs e)
+        {
+            var newWorkTaskPage = new NewWorkTaskPage();
+            newWorkTaskPage.Height = 450;
+            newWorkTaskPage.Width = 300;
+            newWorkTaskPage.Show();
         }
     }
 }

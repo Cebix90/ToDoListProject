@@ -11,7 +11,7 @@ using ToDoList.Database;
 namespace ToDoList.Database.Migrations
 {
     [DbContext(typeof(ToDoListDbContext))]
-    [Migration("20230710160809_Initial")]
+    [Migration("20230713101150_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace ToDoList.Database.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.8");
 
-            modelBuilder.Entity("ToDoList.DataBase.Entities.Category", b =>
+            modelBuilder.Entity("ToDoList.Database.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -35,7 +35,7 @@ namespace ToDoList.Database.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("ToDoList.DataBase.Entities.Comment", b =>
+            modelBuilder.Entity("ToDoList.Database.Entities.Comment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -69,7 +69,7 @@ namespace ToDoList.Database.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("ToDoList.DataBase.Entities.Tag", b =>
+            modelBuilder.Entity("ToDoList.Database.Entities.Tag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -84,7 +84,7 @@ namespace ToDoList.Database.Migrations
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("ToDoList.DataBase.Entities.User", b =>
+            modelBuilder.Entity("ToDoList.Database.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -111,13 +111,13 @@ namespace ToDoList.Database.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ToDoList.DataBase.Entities.WorkTask", b =>
+            modelBuilder.Entity("ToDoList.Database.Entities.WorkTask", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
@@ -127,20 +127,23 @@ namespace ToDoList.Database.Migrations
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("IsFinalized")
+                        .HasColumnType("INTEGER");
+
                     b.Property<bool>("IsSelected")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("StartDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("TagId")
+                    b.Property<int?>("TagId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -154,40 +157,36 @@ namespace ToDoList.Database.Migrations
                     b.ToTable("WorkTasks");
                 });
 
-            modelBuilder.Entity("ToDoList.DataBase.Entities.Comment", b =>
+            modelBuilder.Entity("ToDoList.Database.Entities.Comment", b =>
                 {
-                    b.HasOne("ToDoList.DataBase.Entities.User", "Author")
+                    b.HasOne("ToDoList.Database.Entities.User", "Author")
                         .WithMany("Comments")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
-                    b.HasOne("ToDoList.DataBase.Entities.WorkTask", "Task")
+                    b.HasOne("ToDoList.Database.Entities.WorkTask", "Task")
                         .WithMany("Comments")
-                        .HasForeignKey("TaskId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TaskId");
 
                     b.Navigation("Author");
 
                     b.Navigation("Task");
                 });
 
-            modelBuilder.Entity("ToDoList.DataBase.Entities.WorkTask", b =>
+            modelBuilder.Entity("ToDoList.Database.Entities.WorkTask", b =>
                 {
-                    b.HasOne("ToDoList.DataBase.Entities.Category", "Category")
+                    b.HasOne("ToDoList.Database.Entities.Category", "Category")
                         .WithMany("Tasks")
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("ToDoList.DataBase.Entities.Tag", "Tag")
+                    b.HasOne("ToDoList.Database.Entities.Tag", "Tag")
                         .WithMany("Tasks")
                         .HasForeignKey("TagId");
 
-                    b.HasOne("ToDoList.DataBase.Entities.User", "User")
+                    b.HasOne("ToDoList.Database.Entities.User", "User")
                         .WithMany("Task")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Category");
 
@@ -196,24 +195,24 @@ namespace ToDoList.Database.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ToDoList.DataBase.Entities.Category", b =>
+            modelBuilder.Entity("ToDoList.Database.Entities.Category", b =>
                 {
                     b.Navigation("Tasks");
                 });
 
-            modelBuilder.Entity("ToDoList.DataBase.Entities.Tag", b =>
+            modelBuilder.Entity("ToDoList.Database.Entities.Tag", b =>
                 {
                     b.Navigation("Tasks");
                 });
 
-            modelBuilder.Entity("ToDoList.DataBase.Entities.User", b =>
+            modelBuilder.Entity("ToDoList.Database.Entities.User", b =>
                 {
                     b.Navigation("Comments");
 
                     b.Navigation("Task");
                 });
 
-            modelBuilder.Entity("ToDoList.DataBase.Entities.WorkTask", b =>
+            modelBuilder.Entity("ToDoList.Database.Entities.WorkTask", b =>
                 {
                     b.Navigation("Comments");
                 });
