@@ -12,8 +12,6 @@ namespace ToDoList.Core.ViewModels.Pages
         public string NewWorkTaskDescription { get; set; }
         public string NewWorkTaskCategory { get; set; }
         public string NewWorkTaskStatus { get; set; }
-        public string SelectedCategoryOption { get; set; }
-        public string SelectedTagOption { get; set; }
 
         public event EventHandler<TaskAddedEventArgs> TaskAdded;
 
