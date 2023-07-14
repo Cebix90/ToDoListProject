@@ -1,8 +1,6 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using ToDoList.Core.Models.Controls;
 using ToDoList.Core.ViewModels;
+using ToDoList.Pages;
 
 namespace ToDoList
 {
@@ -19,6 +17,7 @@ namespace ToDoList
             _workTasksPageViewModel = new WorkTasksPageViewModel();
 
             _workTasksPageViewModel.NewWorkTaskRequested += WorkTasksPageViewModel_NewWorkTaskRequested;
+            _workTasksPageViewModel.LogoutRequested += WorkTasksPageViewModel_LogoutRequested;
 
             DataContext = _workTasksPageViewModel;
         }
@@ -38,5 +37,17 @@ namespace ToDoList
                 viewModel.IsSelected = !viewModel.IsSelected;
             }
         }*/
+
+        private void WorkTasksPageViewModel_LogoutRequested(object sender, System.EventArgs e)
+        {
+            var loginPage = new LoginPage();
+            if (Application.Current.MainWindow != null)
+            {
+                Application.Current.MainWindow.Close();
+            }
+            Application.Current.MainWindow = loginPage;
+            loginPage.Show();
+            this.Close();
+        }
     }
 }

@@ -12,18 +12,21 @@ public class WorkTasksPageViewModel : BaseViewModel
     public NewWorkTaskPageViewModel NewWorkTaskPageViewModel { get; private set; }
 
     public event EventHandler NewWorkTaskRequested;
+    public event EventHandler LogoutRequested;
 
     public ObservableCollection<WorkTaskViewModel> WorkTaskList { get; set; } = new ObservableCollection<WorkTaskViewModel>();
 
     public ICommand NewWorkTaskCommand { get; set; }
     public ICommand DeleteSelectedTasksCommand { get; set; }
     public ICommand FinishSelectedTasksCommand { get; set; }
+    public ICommand LogoutCommand { get; set; }
 
     public WorkTasksPageViewModel()
     {
         NewWorkTaskCommand = new RelayCommand(NavigateToNewWorkTaskPage);
         DeleteSelectedTasksCommand = new RelayCommand(DeleteSelectedTasks);
         FinishSelectedTasksCommand = new RelayCommand(FinishSelectedTask);
+        LogoutCommand = new RelayCommand(Logout);
 
         var newWorkTaskPageViewModel = new NewWorkTaskPageViewModel();
         newWorkTaskPageViewModel.TaskAdded += HandleTaskAdded;
@@ -136,5 +139,10 @@ public class WorkTasksPageViewModel : BaseViewModel
         {
             WorkTaskList[i].RowNumber = i + 1;
         }
+    }
+
+    private void Logout()
+    {
+        LogoutRequested?.Invoke(this, EventArgs.Empty);
     }
 }

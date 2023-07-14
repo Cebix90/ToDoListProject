@@ -29,6 +29,10 @@ namespace ToDoList.Pages
         private void SignUpPageViewModel_LoginRequested(object sender, EventArgs e)
         {
             var loginPage = new LoginPage();
+            if (Application.Current.MainWindow != null)
+            {
+                Application.Current.MainWindow.Close();
+            }
             loginPage.Show();
             this.Close();
         }

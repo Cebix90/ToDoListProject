@@ -42,6 +42,7 @@ namespace ToDoList.Pages
             }
             Application.Current.MainWindow = workTaskPage;
             workTaskPage.Show();
+            this.Close();
         }
 
         private void LoginPageViewModel_LoginFailed(object sender, EventArgs e)
@@ -62,6 +63,10 @@ namespace ToDoList.Pages
         private void LoginPageViewModel_SignUpRequested(object sender, EventArgs e)
         {
             var signUpPage = new SignUpPage();
+            if (Application.Current.MainWindow != null)
+            {
+                Application.Current.MainWindow.Close();
+            }
             signUpPage.Show();
             this.Close();
         }
