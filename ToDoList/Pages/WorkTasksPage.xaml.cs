@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using System.Windows.Input;
+using ToDoList.Core.Models.Controls;
 using ToDoList.Core.ViewModels;
 
 namespace ToDoList
@@ -28,5 +30,12 @@ namespace ToDoList
             newWorkTaskPage.Show();
         }
 
+        /*private void DataGridRow_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.OriginalSource is FrameworkElement element && element.DataContext is WorkTaskViewModel viewModel)
+            {
+                viewModel.IsSelected = !viewModel.IsSelected;
+            }
+        }*/
     }
 }

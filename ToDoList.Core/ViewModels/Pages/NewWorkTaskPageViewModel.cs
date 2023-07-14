@@ -27,6 +27,8 @@ namespace ToDoList.Core.ViewModels.Pages
             CategoryOptions = new ObservableCollection<string>(DatabaseLocator.Database.Categories.Select(c => c.Value));
             TagOptions = new ObservableCollection<string>(DatabaseLocator.Database.Tags.Select(t => t.Value));
 
+            NewWorkTaskCategory = "Inne";
+            NewWorkTaskStatus = "Oczekujące";
         }
 
         private void AddNewTask()
@@ -56,8 +58,8 @@ namespace ToDoList.Core.ViewModels.Pages
         {
             NewWorkTaskTitle = string.Empty;
             NewWorkTaskDescription = string.Empty;
-            NewWorkTaskCategory = string.Empty;
-            NewWorkTaskStatus = string.Empty;
+            NewWorkTaskCategory = "Inne";
+            NewWorkTaskStatus = "Oczekujące";
         }
     }
 

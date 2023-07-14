@@ -22,6 +22,11 @@
         <TextBlock Grid.Row="0" HorizontalAlignment="Center">Your current tasks:</TextBlock>
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <DataGrid ItemsSource="{Binding WorkTaskList}" Margin="10" AutoGenerateColumns="False" CanUserAddRows="False">
+                <!--<DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="DataGridRow_PreviewMouseLeftButtonDown" />
+                </Style>
+                </DataGrid.RowStyle>-->
                 <DataGrid.Columns>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
