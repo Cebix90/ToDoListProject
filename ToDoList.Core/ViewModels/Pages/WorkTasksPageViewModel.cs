@@ -11,7 +11,6 @@ public class WorkTasksPageViewModel : BaseViewModel
 {
     public NewWorkTaskPageViewModel NewWorkTaskPageViewModel { get; private set; }
 
-
     public event EventHandler NewWorkTaskRequested;
 
     public ObservableCollection<WorkTaskViewModel> WorkTaskList { get; set; } = new ObservableCollection<WorkTaskViewModel>();
@@ -56,6 +55,8 @@ public class WorkTasksPageViewModel : BaseViewModel
 
             WorkTaskList.Add(viewModel);
         }
+
+        UpdateRowNumbers();
     }
 
     private void NavigateToNewWorkTaskPage()
@@ -104,6 +105,8 @@ public class WorkTasksPageViewModel : BaseViewModel
         }
 
         DatabaseLocator.Database.SaveChanges();
+
+        UpdateRowNumbers();
     }
 
     private void HandleTaskAdded(object sender, TaskAddedEventArgs e)
@@ -123,5 +126,15 @@ public class WorkTasksPageViewModel : BaseViewModel
         };
 
         WorkTaskList.Add(viewModel);
+
+        UpdateRowNumbers();
+    }
+
+    private void UpdateRowNumbers()
+    {
+        for (int i = 0; i < WorkTaskList.Count; i++)
+        {
+            WorkTaskList[i].RowNumber = i + 1;
+        }
     }
 }

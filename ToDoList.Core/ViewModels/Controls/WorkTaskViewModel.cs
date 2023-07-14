@@ -23,4 +23,14 @@ public class WorkTaskViewModel : BaseViewModel
             OnPropertyChanged("IsSelected");
         }
     }
+    private int _rowNumber;
+    public int RowNumber
+    {
+        get => _rowNumber;
+        set
+        {
+            _rowNumber = value;
+            OnPropertyChanged("RowNumber");
+        }
+    }
 }

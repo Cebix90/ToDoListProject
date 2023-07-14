@@ -18,7 +18,6 @@
             <TextBox Text="{Binding NewWorkTaskDescription, Mode=TwoWay}"
                      Style="{StaticResource DefaultBoxStyle}"></TextBox>
 
-            <!-- New ComboBox controls for selecting category and tag -->
             <TextBlock Style="{StaticResource DefaultTextStyle}">Category</TextBlock>
             <ComboBox ItemsSource="{Binding CategoryOptions}" SelectedValue="{Binding NewWorkTaskCategory}" />
             <TextBlock Style="{StaticResource DefaultTextStyle}">Tag</TextBlock>
