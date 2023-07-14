@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Mime;
 using System.Windows;
 using System.Windows.Controls;
 using ToDoList.Core.ViewModels.Pages;
@@ -35,7 +34,7 @@ namespace ToDoList.Pages
         }
         private void LoginPageViewModel_LoginSuccess(object sender, EventArgs e)
         {
-            var workTaskPage = new WorkTasksPage();
+            var workTaskPage = new WorkTasksPage(_loginPageViewModel.LoggedInUserId);
             if (Application.Current.MainWindow != null)
             {
                 Application.Current.MainWindow.Close();

@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using ToDoList.Core.ViewModels;
+using ToDoList.Core.ViewModels.Pages;
 using ToDoList.Pages;
 
 namespace ToDoList
@@ -9,12 +11,14 @@ namespace ToDoList
     /// </summary>
     public partial class WorkTasksPage : Window
     {
+        private Guid _loggedInUserId;
         private readonly WorkTasksPageViewModel _workTasksPageViewModel;
-        public WorkTasksPage()
+        
+        public WorkTasksPage(Guid loggedInUserId)
         {
             InitializeComponent();
-
-            _workTasksPageViewModel = new WorkTasksPageViewModel();
+            _loggedInUserId = loggedInUserId;
+            _workTasksPageViewModel = new WorkTasksPageViewModel(_loggedInUserId);
 
             _workTasksPageViewModel.NewWorkTaskRequested += WorkTasksPageViewModel_NewWorkTaskRequested;
             _workTasksPageViewModel.LogoutRequested += WorkTasksPageViewModel_LogoutRequested;
@@ -24,6 +28,7 @@ namespace ToDoList
 
         private void WorkTasksPageViewModel_NewWorkTaskRequested(object sender, System.EventArgs e)
         {
+            var newWorkTaskPageViewModel = new NewWorkTaskPageViewModel(_loggedInUserId);
             var newWorkTaskPage = new NewWorkTaskPage(_workTasksPageViewModel.NewWorkTaskPageViewModel);
             newWorkTaskPage.Height = 450;
             newWorkTaskPage.Width = 300;

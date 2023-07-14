@@ -9,6 +9,7 @@ namespace ToDoList.Core.ViewModels;
 
 public class WorkTasksPageViewModel : BaseViewModel
 {
+    private Guid _loggedInUserId;
     public NewWorkTaskPageViewModel NewWorkTaskPageViewModel { get; private set; }
 
     public event EventHandler NewWorkTaskRequested;
@@ -21,14 +22,16 @@ public class WorkTasksPageViewModel : BaseViewModel
     public ICommand FinishSelectedTasksCommand { get; set; }
     public ICommand LogoutCommand { get; set; }
 
-    public WorkTasksPageViewModel()
+    public WorkTasksPageViewModel(Guid loggedInUserId)
     {
+        _loggedInUserId = loggedInUserId;
+
         NewWorkTaskCommand = new RelayCommand(NavigateToNewWorkTaskPage);
         DeleteSelectedTasksCommand = new RelayCommand(DeleteSelectedTasks);
         FinishSelectedTasksCommand = new RelayCommand(FinishSelectedTask);
         LogoutCommand = new RelayCommand(Logout);
 
-        var newWorkTaskPageViewModel = new NewWorkTaskPageViewModel();
+        var newWorkTaskPageViewModel = new NewWorkTaskPageViewModel(_loggedInUserId);
         newWorkTaskPageViewModel.TaskAdded += HandleTaskAdded;
 
         LoadTasksFromDatabase();
@@ -36,8 +39,9 @@ public class WorkTasksPageViewModel : BaseViewModel
 
     private void LoadTasksFromDatabase()
     {
-
-        var tasks = DatabaseLocator.Database.WorkTasks.ToList();
+        var tasks = DatabaseLocator.Database.WorkTasks
+            .Where(t => t.UserId == _loggedInUserId)
+            .ToList();
 
         foreach (var task in tasks)
         {
@@ -64,7 +68,7 @@ public class WorkTasksPageViewModel : BaseViewModel
 
     private void NavigateToNewWorkTaskPage()
     {
-        NewWorkTaskPageViewModel = new NewWorkTaskPageViewModel();
+        NewWorkTaskPageViewModel = new NewWorkTaskPageViewModel(_loggedInUserId);
         NewWorkTaskPageViewModel.TaskAdded += HandleTaskAdded;
         NewWorkTaskRequested?.Invoke(this, EventArgs.Empty);
     }
@@ -115,22 +119,25 @@ public class WorkTasksPageViewModel : BaseViewModel
     private void HandleTaskAdded(object sender, TaskAddedEventArgs e)
     {
         var addedTask = e.AddedTask;
-        
-        var viewModel = new WorkTaskViewModel
+
+        if (addedTask.UserId == _loggedInUserId)
         {
-            Id = addedTask.Id,
-            Title = addedTask.Title,
-            Description = addedTask.Description,
-            Category = addedTask.Category?.Value,
-            Status = addedTask.Tag?.Value,
-            StartDate = addedTask.StartDate,
-            EndDate = addedTask.EndDate,
-            IsFinalized = addedTask.IsFinalized
-        };
+            var viewModel = new WorkTaskViewModel
+            {
+                Id = addedTask.Id,
+                Title = addedTask.Title,
+                Description = addedTask.Description,
+                Category = addedTask.Category?.Value,
+                Status = addedTask.Tag?.Value,
+                StartDate = addedTask.StartDate,
+                EndDate = addedTask.EndDate,
+                IsFinalized = addedTask.IsFinalized
+            };
 
-        WorkTaskList.Add(viewModel);
+            WorkTaskList.Add(viewModel);
 
-        UpdateRowNumbers();
+            UpdateRowNumbers();
+        }
     }
 
     private void UpdateRowNumbers()

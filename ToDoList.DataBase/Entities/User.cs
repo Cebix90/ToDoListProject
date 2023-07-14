@@ -9,5 +9,4 @@ public class User
     public string Country { get; set; }
     public List<WorkTask> Task { get; set; } = new List<WorkTask>();
     public List<Comment> Comments { get; set; } = new List<Comment>();
-
 }

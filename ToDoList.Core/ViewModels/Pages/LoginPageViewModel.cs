@@ -11,6 +11,8 @@ namespace ToDoList.Core.ViewModels.Pages
         public event EventHandler LoginFailed;
         public event EventHandler SignUpRequested;
 
+        public Guid LoggedInUserId { get; private set; }
+
         private string _email;
         private string _password;
         private string _maskedPassword;
@@ -19,7 +21,6 @@ namespace ToDoList.Core.ViewModels.Pages
 
         public ICommand LoginCommand { get; set; }
         public ICommand SignUpCommand { get; set; }
-        //public ICommand LoginComm { get; }
 
         public LoginPageViewModel(ToDoListDbContext context)
         {
@@ -83,8 +84,10 @@ namespace ToDoList.Core.ViewModels.Pages
         private void Login()
         {
             string hashedPassword = HashPassword(Password);
+            Guid userId = _authcommands.GetUserIdByEmail(Email);
             if (_authcommands.AuthenticateUser(Email, Password))
             {
+                LoggedInUserId = userId;
                 LoginSuccess?.Invoke(this, EventArgs.Empty);
             }
             else
@@ -95,7 +98,6 @@ namespace ToDoList.Core.ViewModels.Pages
 
         private string HashPassword(string password)
         {
-            // Check if the password is null
             if (password == null)
             {
                 return null;

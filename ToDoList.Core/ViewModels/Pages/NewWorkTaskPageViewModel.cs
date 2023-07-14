@@ -8,6 +8,7 @@ namespace ToDoList.Core.ViewModels.Pages
 {
     public class NewWorkTaskPageViewModel : BaseViewModel
     {
+        private Guid _loggedInUserId;
         public string NewWorkTaskTitle { get; set; }
         public string NewWorkTaskDescription { get; set; }
         public string NewWorkTaskCategory { get; set; }
@@ -19,9 +20,10 @@ namespace ToDoList.Core.ViewModels.Pages
         public ObservableCollection<string> TagOptions { get; set; }
 
         public ICommand AddNewTaskCommand { get; set; }
-
-        public NewWorkTaskPageViewModel()
+        public NewWorkTaskPageViewModel(Guid loggedInUserId)
         {
+            _loggedInUserId = loggedInUserId;
+
             AddNewTaskCommand = new RelayCommand(AddNewTask);
 
             CategoryOptions = new ObservableCollection<string>(DatabaseLocator.Database.Categories.Select(c => c.Value));
@@ -42,7 +44,8 @@ namespace ToDoList.Core.ViewModels.Pages
                 Description = NewWorkTaskDescription,
                 Category = selectedCategory,
                 Tag = selectedTag,
-                StartDate = DateTime.Now
+                StartDate = DateTime.Now,
+                UserId = _loggedInUserId
             };
             
             DatabaseLocator.Database.WorkTasks.Add(newTask);
