@@ -4,7 +4,6 @@ using ToDoList.Core.Helpers;
 using ToDoList.Core.Models.Base;
 using ToDoList.Core.Models.Controls;
 using ToDoList.Core.ViewModels.Pages;
-using ToDoList.Database.Entities;
 
 namespace ToDoList.Core.ViewModels;
 
@@ -18,7 +17,6 @@ public class WorkTasksPageViewModel : BaseViewModel
     public ObservableCollection<WorkTaskViewModel> WorkTaskList { get; set; } = new ObservableCollection<WorkTaskViewModel>();
 
     public ICommand NewWorkTaskCommand { get; set; }
-    //public ICommand AddNewTaskCommand { get; set; }
     public ICommand DeleteSelectedTasksCommand { get; set; }
     public ICommand FinishSelectedTasksCommand { get; set; }
 
@@ -60,38 +58,13 @@ public class WorkTasksPageViewModel : BaseViewModel
         }
     }
 
-    private void RefreshTaskList()
-    {
-        var refreshedTasks = DatabaseLocator.Database.WorkTasks.ToList();
-        WorkTaskList.Clear();
-        foreach (var task in refreshedTasks)
-        {
-            var viewModel = new WorkTaskViewModel
-            {
-                Id = task.Id,
-                Title = task.Title,
-                Description = task.Description,
-                Category = task.Category?.Value,
-                Status = task.Tag?.Value,
-                StartDate = task.StartDate,
-                EndDate = task.EndDate,
-                IsFinalized = task.IsFinalized
-            };
-
-            WorkTaskList.Add(viewModel);
-        }
-    }
-
     private void NavigateToNewWorkTaskPage()
     {
         NewWorkTaskPageViewModel = new NewWorkTaskPageViewModel();
         NewWorkTaskPageViewModel.TaskAdded += HandleTaskAdded;
         NewWorkTaskRequested?.Invoke(this, EventArgs.Empty);
     }
-
-
-
-
+    
     private void FinishSelectedTask()
     {
         var selectedTasks = WorkTaskList.Where(x => x.IsSelected).ToList();
@@ -136,8 +109,7 @@ public class WorkTasksPageViewModel : BaseViewModel
     private void HandleTaskAdded(object sender, TaskAddedEventArgs e)
     {
         var addedTask = e.AddedTask;
-
-        // Dodaj dodane zadanie do listy zadań
+        
         var viewModel = new WorkTaskViewModel
         {
             Id = addedTask.Id,

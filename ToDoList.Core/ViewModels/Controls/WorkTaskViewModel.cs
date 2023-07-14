@@ -9,8 +9,18 @@ public class WorkTaskViewModel : BaseViewModel
     public string Description { get; set; }
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }
-    public bool IsSelected { get; set; }
     public bool IsFinalized { get; set; }
     public string Status { get; set; }
     public string Category { get; set; }
+
+    private bool _isSelected;
+    public bool IsSelected
+    {
+        get => _isSelected;
+        set
+        {
+            _isSelected = value;
+            OnPropertyChanged("IsSelected");
+        }
+    }
 }

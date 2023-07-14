@@ -4,9 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ToDoList"
+      xmlns:helpers="clr-namespace:ToDoList.Helpers"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="800"
       Title="WorkTasksPage">
+
+    <Window.Resources>
+        <helpers:RowNumberConverter x:Key="RowNumberConverter" />
+    </Window.Resources>
 
     <Grid Height="450">
         <Grid.RowDefinitions>
@@ -16,10 +21,22 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" HorizontalAlignment="Center">Your current tasks:</TextBlock>
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <DataGrid ItemsSource="{Binding WorkTaskList}" Margin="10" AutoGenerateColumns="False">
+            <DataGrid ItemsSource="{Binding WorkTaskList}" Margin="10" AutoGenerateColumns="False" CanUserAddRows="False">
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn Header="Selected" Binding="{Binding IsSelected}"/>
-                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="No.">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowNumberConverter}}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
                     <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
                     <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}"/>

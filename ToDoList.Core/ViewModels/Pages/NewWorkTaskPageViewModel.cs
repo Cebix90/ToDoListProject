@@ -31,7 +31,6 @@ namespace ToDoList.Core.ViewModels.Pages
 
         private void AddNewTask()
         {
-            // Pobranie odpowiednich obiektów Category i Tag na podstawie wartości NewWorkTaskCategory i NewWorkTaskStatus
             var selectedCategory = DatabaseLocator.Database.Categories.FirstOrDefault(c => c.Value == NewWorkTaskCategory);
             var selectedTag = DatabaseLocator.Database.Tags.FirstOrDefault(t => t.Value == NewWorkTaskStatus);
 
@@ -43,17 +42,13 @@ namespace ToDoList.Core.ViewModels.Pages
                 Tag = selectedTag,
                 StartDate = DateTime.Now
             };
-
-            // Dodanie nowego zadania do bazy danych
+            
             DatabaseLocator.Database.WorkTasks.Add(newTask);
-
-            // Zapisanie zmian w bazie danych
+            
             DatabaseLocator.Database.SaveChanges();
-
-            // Wywołanie zdarzenia TaskAdded, aby poinformować o dodaniu nowego zadania
+            
             TaskAdded?.Invoke(this, new TaskAddedEventArgs(newTask));
-
-            // Wyczyszczenie pól
+            
             ClearFields();
         }
 

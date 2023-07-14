@@ -8,13 +8,6 @@ namespace ToDoList
     /// </summary>
     public partial class NewWorkTaskPage : Window
     {
-        /*public NewWorkTaskPage()
-        {
-            InitializeComponent();
-
-            DataContext = new NewWorkTaskPageViewModel();
-        }*/
-
         public NewWorkTaskPage(NewWorkTaskPageViewModel viewModel)
         {
             InitializeComponent();

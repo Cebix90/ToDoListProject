@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using ToDoList.Database;
 
 namespace ToDoList.Core.Models.Base;
 
