@@ -91,12 +91,14 @@ public class WorkTasksPageViewModel : BaseViewModel
             {
                 task.EndDate = DateTime.Now;
                 task.IsFinalized = true;
+                task.Status = "Completed";
 
                 var foundEntity = DatabaseLocator.Database.WorkTasks.FirstOrDefault(x => x.Id == task.Id);
                 if (foundEntity != null)
                 {
                     foundEntity.EndDate = task.EndDate;
                     foundEntity.IsFinalized = true;
+                    foundEntity.TagId = 6;
                 }
             }
         }
