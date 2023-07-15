@@ -7,27 +7,77 @@ using ToDoList.Core.ViewModels.Pages;
 
 namespace ToDoList.Core.ViewModels;
 
+/// <summary>
+/// View model for the work tasks page.
+/// </summary>
 public class WorkTasksPageViewModel : BaseViewModel
 {
     private Guid _loggedInUserId;
 
+    /// <summary>
+    /// Gets or sets the user nickname.
+    /// </summary>
     public string UserNickname { get; set; }
 
+    /// <summary>
+    /// Event raised when a new work task is requested.
+    /// </summary>
     public event EventHandler NewWorkTaskRequested;
+
+    /// <summary>
+    /// Event raised when a logout is requested.
+    /// </summary>
     public event EventHandler LogoutRequested;
 
+    /// <summary>
+    /// Gets the view model for the new work task page.
+    /// </summary>
     public NewWorkTaskPageViewModel NewWorkTaskPageViewModel { get; private set; }
+
+    /// <summary>
+    /// Gets or sets the collection of work tasks.
+    /// </summary>
     public ObservableCollection<WorkTaskViewModel> WorkTaskList { get; set; } = new ObservableCollection<WorkTaskViewModel>();
 
+    /// <summary>
+    /// Gets or sets the collection of category options.
+    /// </summary>
     public ObservableCollection<string> CategoryOptions { get; set; }
+
+    /// <summary>
+    /// Gets or sets the collection of tag options.
+    /// </summary>
     public ObservableCollection<string> TagOptions { get; set; }
 
+    /// <summary>
+    /// Gets the command for creating a new work task.
+    /// </summary>
     public ICommand NewWorkTaskCommand { get; set; }
+
+    /// <summary>
+    /// Gets the command for deleting selected tasks.
+    /// </summary>
     public ICommand DeleteSelectedTasksCommand { get; set; }
+
+    /// <summary>
+    /// Gets the command for finishing selected tasks.
+    /// </summary>
     public ICommand FinishSelectedTasksCommand { get; set; }
+
+    /// <summary>
+    /// Gets the command for saving changes to selected tasks.
+    /// </summary>
     public ICommand SaveChangesSelectedTasksCommand { get; set; }
+
+    /// <summary>
+    /// Gets the command for logging out.
+    /// </summary>
     public ICommand LogoutCommand { get; set; }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="WorkTasksPageViewModel"/> class.
+    /// </summary>
+    /// <param name="loggedInUserId">The ID of the logged-in user.</param>
     public WorkTasksPageViewModel(Guid loggedInUserId)
     {
         _loggedInUserId = loggedInUserId;
@@ -172,7 +222,7 @@ public class WorkTasksPageViewModel : BaseViewModel
             UpdateRowNumbers();
         }
     }
-
+    
     private void UpdateRowNumbers()
     {
         for (int i = 0; i < WorkTaskList.Count; i++)
@@ -180,7 +230,7 @@ public class WorkTasksPageViewModel : BaseViewModel
             WorkTaskList[i].RowNumber = i + 1;
         }
     }
-
+    
     private void Logout()
     {
         LogoutRequested?.Invoke(this, EventArgs.Empty);

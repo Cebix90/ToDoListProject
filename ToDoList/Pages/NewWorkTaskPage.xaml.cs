@@ -11,6 +11,11 @@ namespace ToDoList
     public partial class NewWorkTaskPage : Window
     {
         private readonly NewWorkTaskPageViewModel _newWorkTaskPageViewModel;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewWorkTaskPage"/> class.
+        /// </summary>
+        /// <param name="viewModel">The view model for the new work task page.</param>
         public NewWorkTaskPage(NewWorkTaskPageViewModel viewModel)
         {
             InitializeComponent();

@@ -10,6 +10,10 @@ namespace ToDoList.Pages
     public partial class SignUpPage : Window
     {
         private readonly SignUpPageViewModel _signUpPageViewModel;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SignUpPage"/> class.
+        /// </summary>
         public SignUpPage()
         {
             InitializeComponent();

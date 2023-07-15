@@ -7,12 +7,39 @@ namespace ToDoList.Core.ViewModels.Pages;
 
 public class SignUpPageViewModel : BaseViewModel
 {
+    /// <summary>
+    /// Event raised when a login is requested.
+    /// </summary>
     public event EventHandler LoginRequested;
+
+    /// <summary>
+    /// Event raised when the entered email is already taken.
+    /// </summary>
     public event EventHandler EmailIsTaken;
+
+    /// <summary>
+    /// Event raised when the entered nickname is already taken.
+    /// </summary>
     public event EventHandler NickNameIsTaken;
+
+    /// <summary>
+    /// Event raised when a nickname must be entered.
+    /// </summary>
     public event EventHandler NickNameMustBeEntered;
+
+    /// <summary>
+    /// Event raised when the entered password is too short.
+    /// </summary>
     public event EventHandler PasswordIsToShort;
+
+    /// <summary>
+    /// Event raised when the entered email is not in the correct form.
+    /// </summary>
     public event EventHandler EmailIsNotInCorrectForm;
+
+    /// <summary>
+    /// Event raised when the submission is successful.
+    /// </summary>
     public event EventHandler SubmitSuccessfully;
 
     private string _email;
@@ -20,15 +47,28 @@ public class SignUpPageViewModel : BaseViewModel
     private string _nickName;
     private string _country;
 
+    /// <summary>
+    /// Command for signing up a new user.
+    /// </summary>
     public ICommand SignUpCommand { get; set; }
+
+    /// <summary>
+    /// Command for navigating to the login page.
+    /// </summary>
     public ICommand LoginCommand { get; set; }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SignUpPageViewModel"/> class.
+    /// </summary>
     public SignUpPageViewModel()
     {
         SignUpCommand = new RelayCommand(AddNewUser);
         LoginCommand = new RelayCommand(NavigateToLoginPage);
     }
 
+    /// <summary>
+    /// Gets or sets the new email.
+    /// </summary>
     public string NewEmail
     {
         get
@@ -45,6 +85,9 @@ public class SignUpPageViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Gets or sets the new password.
+    /// </summary>
     public string NewPassword
     {
         get
@@ -61,6 +104,9 @@ public class SignUpPageViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Gets or sets the new nickname.
+    /// </summary>
     public string NewNickName
     {
         get
@@ -77,6 +123,9 @@ public class SignUpPageViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Gets or sets the new country.
+    /// </summary>
     public string NewCountry
     {
         get
@@ -100,7 +149,6 @@ public class SignUpPageViewModel : BaseViewModel
 
         if (emailExists)
         {
-            // Display a message to the user
             EmailIsTaken?.Invoke(this, EventArgs.Empty);
             return;
         }
@@ -124,12 +172,10 @@ public class SignUpPageViewModel : BaseViewModel
 
         if (nicknameExists)
         {
-            // Display a message to the user
             NickNameIsTaken?.Invoke(this, EventArgs.Empty);
             return;
         }
-
-        // Check if the password is at least 5 characters long
+        
         if (NewPassword == null || NewPassword.Length < 5)
         {
             PasswordIsToShort?.Invoke(this, EventArgs.Empty);

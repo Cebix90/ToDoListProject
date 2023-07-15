@@ -14,6 +14,10 @@ namespace ToDoList
         private Guid _loggedInUserId;
         private readonly WorkTasksPageViewModel _workTasksPageViewModel;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WorkTasksPage"/> class.
+        /// </summary>
+        /// <param name="loggedInUserId">The ID of the logged-in user.</param>
         public WorkTasksPage(Guid loggedInUserId)
         {
             InitializeComponent();

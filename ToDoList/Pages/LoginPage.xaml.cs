@@ -13,6 +13,10 @@ namespace ToDoList.Pages
     public partial class LoginPage : Window
     {
         private readonly LoginPageViewModel _loginPageViewModel;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginPage"/> class.
+        /// </summary>
         public LoginPage()
         {
             InitializeComponent();

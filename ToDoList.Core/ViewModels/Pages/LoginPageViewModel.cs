@@ -7,10 +7,24 @@ namespace ToDoList.Core.ViewModels.Pages
 {
     public class LoginPageViewModel : BaseViewModel
     {
+        /// <summary>
+        /// Event raised when the login is successful.
+        /// </summary>
         public event EventHandler LoginSuccess;
+
+        /// <summary>
+        /// Event raised when the login fails.
+        /// </summary>
         public event EventHandler LoginFailed;
+
+        /// <summary>
+        /// Event raised when a sign-up is requested.
+        /// </summary>
         public event EventHandler SignUpRequested;
 
+        /// <summary>
+        /// Gets the ID of the logged-in user.
+        /// </summary>
         public Guid LoggedInUserId { get; private set; }
 
         private string _email;
@@ -19,9 +33,20 @@ namespace ToDoList.Core.ViewModels.Pages
         private readonly ToDoListDbContext _context;
         private readonly AuthenticationCommands _authcommands;
 
+        /// <summary>
+        /// Command for logging in.
+        /// </summary>
         public ICommand LoginCommand { get; set; }
+
+        /// <summary>
+        /// Command for signing up.
+        /// </summary>
         public ICommand SignUpCommand { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginPageViewModel"/> class.
+        /// </summary>
+        /// <param name="context">The database context.</param>
         public LoginPageViewModel(ToDoListDbContext context)
         {
             _context = context;
@@ -30,6 +55,9 @@ namespace ToDoList.Core.ViewModels.Pages
             _authcommands = new AuthenticationCommands(_context);
         }
 
+        /// <summary>
+        /// Gets or sets the email.
+        /// </summary
         public string Email
         {
             get
@@ -46,6 +74,9 @@ namespace ToDoList.Core.ViewModels.Pages
             }
         }
 
+        /// <summary>
+        /// Gets or sets the masked password.
+        /// </summary>
         public string MaskedPassword
         {
             get { return _maskedPassword; }
@@ -59,6 +90,9 @@ namespace ToDoList.Core.ViewModels.Pages
             }
         }
 
+        /// <summary>
+        /// Gets or sets the password.
+        /// </summary>
         public string Password
         {
             get
