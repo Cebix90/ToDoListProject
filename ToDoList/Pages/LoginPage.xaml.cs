@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using ToDoList.Core.ViewModels.Pages;
 using ToDoList.Database;
 
@@ -22,6 +23,7 @@ namespace ToDoList.Pages
             _loginPageViewModel.LoginFailed += LoginPageViewModel_LoginFailed;
             _loginPageViewModel.SignUpRequested += LoginPageViewModel_SignUpRequested;
 
+            PasswordBox.KeyUp += PasswordBox_KeyUp;
 
             DataContext = _loginPageViewModel;
 
@@ -68,6 +70,15 @@ namespace ToDoList.Pages
             }
             signUpPage.Show();
             this.Close();
+        }
+
+        private void PasswordBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                // Call the Login method when the Enter key is pressed
+                _loginPageViewModel.LoginCommand.Execute(null);
+            }
         }
     }
 }
