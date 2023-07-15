@@ -8,7 +8,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         builder.HasMany(u => u.Task)
             .WithOne(t => t.User)
-            .HasForeignKey(t => t.UserId)
-            .IsRequired(false);
+            .HasForeignKey(t => t.UserId);
     }
 }

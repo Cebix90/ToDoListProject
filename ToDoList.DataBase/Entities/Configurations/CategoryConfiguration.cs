@@ -9,8 +9,7 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
         builder.HasMany(c => c.Tasks)
             .WithOne(t => t.Category)
-            .HasForeignKey(t => t.CategoryId)
-            .IsRequired(false);
+            .HasForeignKey(t => t.CategoryId);
 
         /*builder.Property(x => x.Value)
             .IsRequired();*/

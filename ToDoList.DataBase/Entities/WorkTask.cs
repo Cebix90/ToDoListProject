@@ -11,11 +11,11 @@ public class WorkTask
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }
     public bool IsFinalized { get; set; }
-    public User? User { get; set; }
-    public Guid? UserId { get; set; }
+    public User User { get; set; }
+    public Guid UserId { get; set; }
     public List<Comment> Comments { get; set; } = new List<Comment>();
-    public Tag? Tag { get; set; }
-    public int? TagId { get; set; }
-    public Category? Category { get; set; }
-    public int? CategoryId { get; set; }
+    public Tag Tag { get; set; }
+    public int TagId { get; set; }
+    public Category Category { get; set; }
+    public int CategoryId { get; set; }
 }

@@ -8,7 +8,6 @@ public class TagConfiguration : IEntityTypeConfiguration<Tag>
     {
         builder.HasMany(t => t.Tasks)
             .WithOne(t => t.Tag)
-            .HasForeignKey(t => t.TagId)
-            .IsRequired(false);
+            .HasForeignKey(t => t.TagId);
     }
 }
