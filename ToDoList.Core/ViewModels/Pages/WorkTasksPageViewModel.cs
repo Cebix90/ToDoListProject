@@ -20,6 +20,7 @@ public class WorkTasksPageViewModel : BaseViewModel
     public ICommand NewWorkTaskCommand { get; set; }
     public ICommand DeleteSelectedTasksCommand { get; set; }
     public ICommand FinishSelectedTasksCommand { get; set; }
+    public ICommand SaveChangesSelectedTasksCommand { get; set; }
     public ICommand LogoutCommand { get; set; }
 
     public WorkTasksPageViewModel(Guid loggedInUserId)
@@ -29,6 +30,7 @@ public class WorkTasksPageViewModel : BaseViewModel
         NewWorkTaskCommand = new RelayCommand(NavigateToNewWorkTaskPage);
         DeleteSelectedTasksCommand = new RelayCommand(DeleteSelectedTasks);
         FinishSelectedTasksCommand = new RelayCommand(FinishSelectedTask);
+        SaveChangesSelectedTasksCommand = new RelayCommand(SaveChangesSelectedTasks);
         LogoutCommand = new RelayCommand(Logout);
 
         var newWorkTaskPageViewModel = new NewWorkTaskPageViewModel(_loggedInUserId);
@@ -90,6 +92,25 @@ public class WorkTasksPageViewModel : BaseViewModel
                     foundEntity.EndDate = task.EndDate;
                     foundEntity.IsFinalized = true;
                 }
+            }
+        }
+
+        DatabaseLocator.Database.SaveChanges();
+    }
+
+    private void SaveChangesSelectedTasks()
+    {
+        var selectedTasks = WorkTaskList.Where(x => x.IsSelected).ToList();
+
+        foreach (var task in selectedTasks)
+        {
+            var foundEntity = DatabaseLocator.Database.WorkTasks.FirstOrDefault(x => x.Id == task.Id);
+            if (foundEntity != null)
+            {
+                foundEntity.Title = task.Title;
+                foundEntity.Description = task.Description;
+                foundEntity.Category = DatabaseLocator.Database.Categories.FirstOrDefault(c => c.Value == task.Category);
+                foundEntity.Tag = DatabaseLocator.Database.Tags.FirstOrDefault(t => t.Value == task.Status);
             }
         }
 

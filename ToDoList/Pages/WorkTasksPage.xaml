@@ -62,11 +62,15 @@
                 <Button Command="{Binding FinishSelectedTasksCommand}"
                     Grid.Column="1"
                     Style="{StaticResource DefaultButtonStyle}"
-                    Content="End"></Button>
-                <Button Command="{Binding DeleteSelectedTasksCommand}"
+                    Content="End Task"></Button>
+                <Button Command="{Binding SaveChangesSelectedTasksCommand}"
                     Grid.Column="2"
                     Style="{StaticResource DefaultButtonStyle}"
-                    Content="Remove"></Button>
+                    Content="Save Changes"></Button>
+                <Button Command="{Binding DeleteSelectedTasksCommand}"
+                        Grid.Column="3"
+                        Style="{StaticResource DefaultButtonStyle}"
+                        Content="Remove"></Button>
             </Grid>
         </StackPanel>
 
