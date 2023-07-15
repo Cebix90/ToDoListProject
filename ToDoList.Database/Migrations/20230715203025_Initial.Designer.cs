@@ -11,7 +11,7 @@ using ToDoList.Database;
 namespace ToDoList.Database.Migrations
 {
     [DbContext(typeof(ToDoListDbContext))]
-    [Migration("20230713101150_Initial")]
+    [Migration("20230715203025_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -128,9 +128,6 @@ namespace ToDoList.Database.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("IsFinalized")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsSelected")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("StartDate")

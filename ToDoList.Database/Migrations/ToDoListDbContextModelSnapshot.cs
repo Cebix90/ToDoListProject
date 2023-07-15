@@ -127,9 +127,6 @@ namespace ToDoList.Database.Migrations
                     b.Property<bool>("IsFinalized")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("IsSelected")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime?>("StartDate")
                         .HasColumnType("TEXT");
 

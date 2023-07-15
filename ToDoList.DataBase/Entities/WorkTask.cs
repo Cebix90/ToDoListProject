@@ -10,7 +10,6 @@ public class WorkTask
     public string Description { get; set; }
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }
-    public bool IsSelected { get; set; }
     public bool IsFinalized { get; set; }
     public User? User { get; set; }
     public Guid? UserId { get; set; }

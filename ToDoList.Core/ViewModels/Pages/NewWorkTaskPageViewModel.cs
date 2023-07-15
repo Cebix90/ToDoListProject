@@ -32,27 +32,23 @@ namespace ToDoList.Core.ViewModels.Pages
             CategoryOptions = new ObservableCollection<string>(DatabaseLocator.Database.Categories.Select(c => c.Value));
             TagOptions = new ObservableCollection<string>(DatabaseLocator.Database.Tags.Select(t => t.Value));
 
-            NewWorkTaskCategory = "Inne";
-            NewWorkTaskStatus = "Oczekujące";
+            NewWorkTaskCategory = "Other";
+            NewWorkTaskStatus = "Pending";
         }
 
         private void AddNewTask()
         {
             if (string.IsNullOrEmpty(NewWorkTaskTitle))
             {
-                // Wyświetl pop-up informujący o braku wprowadzonego tytułu
                 TitleFailed?.Invoke(this, EventArgs.Empty);
                 return;
             }
 
             if (string.IsNullOrEmpty(NewWorkTaskDescription))
             {
-                // Wyświetl pop-up informujący o braku wprowadzonego opisu
                 DescriptionFailed?.Invoke(this, EventArgs.Empty);
                 return;
             }
-
-
 
             var selectedCategory = DatabaseLocator.Database.Categories.FirstOrDefault(c => c.Value == NewWorkTaskCategory);
             var selectedTag = DatabaseLocator.Database.Tags.FirstOrDefault(t => t.Value == NewWorkTaskStatus);
@@ -80,8 +76,8 @@ namespace ToDoList.Core.ViewModels.Pages
         {
             NewWorkTaskTitle = string.Empty;
             NewWorkTaskDescription = string.Empty;
-            NewWorkTaskCategory = "Inne";
-            NewWorkTaskStatus = "Oczekujące";
+            NewWorkTaskCategory = "Other";
+            NewWorkTaskStatus = "Pending";
         }
     }
 

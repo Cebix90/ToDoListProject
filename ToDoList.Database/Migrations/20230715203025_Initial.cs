@@ -62,7 +62,6 @@ namespace ToDoList.Database.Migrations
                     Description = table.Column<string>(type: "TEXT", nullable: false),
                     StartDate = table.Column<DateTime>(type: "TEXT", nullable: true),
                     EndDate = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    IsSelected = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsFinalized = table.Column<bool>(type: "INTEGER", nullable: false),
                     UserId = table.Column<Guid>(type: "TEXT", nullable: true),
                     TagId = table.Column<int>(type: "INTEGER", nullable: true),
