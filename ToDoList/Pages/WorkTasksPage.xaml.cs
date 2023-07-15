@@ -13,7 +13,7 @@ namespace ToDoList
     {
         private Guid _loggedInUserId;
         private readonly WorkTasksPageViewModel _workTasksPageViewModel;
-        
+
         public WorkTasksPage(Guid loggedInUserId)
         {
             InitializeComponent();

@@ -17,6 +17,9 @@ public class WorkTasksPageViewModel : BaseViewModel
 
     public ObservableCollection<WorkTaskViewModel> WorkTaskList { get; set; } = new ObservableCollection<WorkTaskViewModel>();
 
+    public ObservableCollection<string> CategoryOptions { get; set; }
+    public ObservableCollection<string> TagOptions { get; set; }
+
     public ICommand NewWorkTaskCommand { get; set; }
     public ICommand DeleteSelectedTasksCommand { get; set; }
     public ICommand FinishSelectedTasksCommand { get; set; }
@@ -32,6 +35,9 @@ public class WorkTasksPageViewModel : BaseViewModel
         FinishSelectedTasksCommand = new RelayCommand(FinishSelectedTask);
         SaveChangesSelectedTasksCommand = new RelayCommand(SaveChangesSelectedTasks);
         LogoutCommand = new RelayCommand(Logout);
+
+        CategoryOptions = new ObservableCollection<string>(DatabaseLocator.Database.Categories.Select(c => c.Value));
+        TagOptions = new ObservableCollection<string>(DatabaseLocator.Database.Tags.Select(t => t.Value));
 
         var newWorkTaskPageViewModel = new NewWorkTaskPageViewModel(_loggedInUserId);
         newWorkTaskPageViewModel.TaskAdded += HandleTaskAdded;
@@ -74,7 +80,7 @@ public class WorkTasksPageViewModel : BaseViewModel
         NewWorkTaskPageViewModel.TaskAdded += HandleTaskAdded;
         NewWorkTaskRequested?.Invoke(this, EventArgs.Empty);
     }
-    
+
     private void FinishSelectedTask()
     {
         var selectedTasks = WorkTaskList.Where(x => x.IsSelected).ToList();
