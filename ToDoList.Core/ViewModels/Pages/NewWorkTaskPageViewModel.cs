@@ -16,6 +16,9 @@ namespace ToDoList.Core.ViewModels.Pages
 
         public event EventHandler<TaskAddedEventArgs> TaskAdded;
 
+        public event EventHandler TitleFailed;
+        public event EventHandler DescriptionFailed;
+
         public ObservableCollection<string> CategoryOptions { get; set; }
         public ObservableCollection<string> TagOptions { get; set; }
 
@@ -35,6 +38,22 @@ namespace ToDoList.Core.ViewModels.Pages
 
         private void AddNewTask()
         {
+            if (string.IsNullOrEmpty(NewWorkTaskTitle))
+            {
+                // Wyświetl pop-up informujący o braku wprowadzonego tytułu
+                TitleFailed?.Invoke(this, EventArgs.Empty);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(NewWorkTaskDescription))
+            {
+                // Wyświetl pop-up informujący o braku wprowadzonego opisu
+                DescriptionFailed?.Invoke(this, EventArgs.Empty);
+                return;
+            }
+
+
+
             var selectedCategory = DatabaseLocator.Database.Categories.FirstOrDefault(c => c.Value == NewWorkTaskCategory);
             var selectedTag = DatabaseLocator.Database.Tags.FirstOrDefault(t => t.Value == NewWorkTaskStatus);
 

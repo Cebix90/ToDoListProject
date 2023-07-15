@@ -76,7 +76,14 @@ namespace ToDoList.Pages
         {
             if (e.Key == Key.Enter)
             {
-                // Call the Login method when the Enter key is pressed
+                _loginPageViewModel.LoginCommand.Execute(null);
+            }
+        }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return || e.Key == Key.Enter)
+            {
                 _loginPageViewModel.LoginCommand.Execute(null);
             }
         }
