@@ -5,11 +5,19 @@ namespace ToDoList.Database;
 public class Seeds
 {
     private readonly ToDoListDbContext _context;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Seeds"/> class.
+    /// </summary>
+    /// <param name="context">The database context.</param>
     public Seeds(ToDoListDbContext context)
     {
         _context = context;
     }
 
+    /// <summary>
+    /// Seeds the initial data into the database.
+    /// </summary>
     public void SeedData()
     {
         if (!_context.Users.Any())

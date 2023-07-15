@@ -29,7 +29,7 @@ namespace ToDoList.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("ToDoList.Database.Entities.Comment", b =>
@@ -63,7 +63,7 @@ namespace ToDoList.Database.Migrations
 
                     b.HasIndex("TaskId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("ToDoList.Database.Entities.Tag", b =>
@@ -78,7 +78,7 @@ namespace ToDoList.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tags", (string)null);
                 });
 
             modelBuilder.Entity("ToDoList.Database.Entities.User", b =>
@@ -105,7 +105,7 @@ namespace ToDoList.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("ToDoList.Database.Entities.WorkTask", b =>
@@ -148,7 +148,7 @@ namespace ToDoList.Database.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("WorkTasks");
+                    b.ToTable("WorkTasks", (string)null);
                 });
 
             modelBuilder.Entity("ToDoList.Database.Entities.Comment", b =>

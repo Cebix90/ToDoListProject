@@ -4,6 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace ToDoList.Database.Entities.Configurations;
 public class CommentConfiguration : IEntityTypeConfiguration<Comment>
 {
+    /// <summary>
+    /// Configures the entity mapping for the <see cref="Comment"/> entity.
+    /// </summary>
+    /// <param name="builder">The entity type builder.</param>
     public void Configure(EntityTypeBuilder<Comment> builder)
     {
         builder.HasOne(c => c.Author)
