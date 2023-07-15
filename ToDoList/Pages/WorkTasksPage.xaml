@@ -8,30 +8,22 @@
         d:DesignHeight="500" d:DesignWidth="800"
         Title="WorkTasksPage">
 
-    <!--
-    <Window.Resources>
-        <helpers:RowNumberConverter x:Key="RowNumberConverter" />
-    </Window.Resources>-->
-
     <Grid Height="450">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" HorizontalAlignment="Left" Text="{Binding UserNickname}" />
         <TextBlock Grid.Row="0" HorizontalAlignment="Center">Your current tasks:</TextBlock>
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <DataGrid ItemsSource="{Binding WorkTaskList}" 
+            <DataGrid x:Name="myDataGrid"
+                      ItemsSource="{Binding WorkTaskList}" 
                       Margin="10" 
                       AutoGenerateColumns="False" 
                       CanUserAddRows="False"
-                      IsReadOnly="False"
                       IsSynchronizedWithCurrentItem="True">
-                <!--<DataGrid.RowStyle>
-                <Style TargetType="DataGridRow">
-                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="DataGridRow_PreviewMouseLeftButtonDown" />
-                </Style>
-                </DataGrid.RowStyle>-->
+
                 <DataGrid.Columns>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
@@ -41,11 +33,65 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="No." Binding="{Binding RowNumber}" />
-                    <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
-                    <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
-                    <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}"/>
-                    <DataGridTextColumn Header="End Date" Binding="{Binding EndDate}"/>
+
+                    <DataGridTextColumn Header="Title" Binding="{Binding Title}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsFinalized}" Value="True">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="Description" Binding="{Binding Description}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsFinalized}" Value="True">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsFinalized}" Value="True">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="End Date" Binding="{Binding EndDate}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsFinalized}" Value="True">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+
                     <DataGridTemplateColumn Header="Category">
+                        <DataGridTemplateColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsFinalized}" Value="True">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTemplateColumn.CellStyle>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Category}" />
@@ -57,17 +103,27 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
+
                     <DataGridTemplateColumn Header="Status">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Status}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate>
-                            <ComboBox ItemsSource="{Binding Path=DataContext.TagOptions, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" SelectedItem="{Binding Status}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
+                        <DataGridTemplateColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsFinalized}" Value="True">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTemplateColumn.CellStyle>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Status}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <ComboBox ItemsSource="{Binding Path=DataContext.TagOptions, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" SelectedItem="{Binding Status}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>

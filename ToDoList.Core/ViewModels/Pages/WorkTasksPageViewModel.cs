@@ -10,11 +10,13 @@ namespace ToDoList.Core.ViewModels;
 public class WorkTasksPageViewModel : BaseViewModel
 {
     private Guid _loggedInUserId;
-    public NewWorkTaskPageViewModel NewWorkTaskPageViewModel { get; private set; }
+
+    public string UserNickname { get; set; }
 
     public event EventHandler NewWorkTaskRequested;
     public event EventHandler LogoutRequested;
 
+    public NewWorkTaskPageViewModel NewWorkTaskPageViewModel { get; private set; }
     public ObservableCollection<WorkTaskViewModel> WorkTaskList { get; set; } = new ObservableCollection<WorkTaskViewModel>();
 
     public ObservableCollection<string> CategoryOptions { get; set; }
@@ -29,6 +31,8 @@ public class WorkTasksPageViewModel : BaseViewModel
     public WorkTasksPageViewModel(Guid loggedInUserId)
     {
         _loggedInUserId = loggedInUserId;
+
+        UserNickname = DatabaseLocator.Database.Users.FirstOrDefault(u => u.Id == _loggedInUserId)?.NickName;
 
         NewWorkTaskCommand = new RelayCommand(NavigateToNewWorkTaskPage);
         DeleteSelectedTasksCommand = new RelayCommand(DeleteSelectedTasks);
@@ -108,7 +112,7 @@ public class WorkTasksPageViewModel : BaseViewModel
 
     private void SaveChangesSelectedTasks()
     {
-        var selectedTasks = WorkTaskList.Where(x => x.IsSelected).ToList();
+        var selectedTasks = WorkTaskList.Where(x => x is { IsSelected: true, IsFinalized: false }).ToList();
 
         foreach (var task in selectedTasks)
         {

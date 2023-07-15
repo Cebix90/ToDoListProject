@@ -35,14 +35,6 @@ namespace ToDoList
             newWorkTaskPage.Show();
         }
 
-        /*private void DataGridRow_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.OriginalSource is FrameworkElement element && element.DataContext is WorkTaskViewModel viewModel)
-            {
-                viewModel.IsSelected = !viewModel.IsSelected;
-            }
-        }*/
-
         private void WorkTasksPageViewModel_LogoutRequested(object sender, System.EventArgs e)
         {
             var loginPage = new LoginPage();
