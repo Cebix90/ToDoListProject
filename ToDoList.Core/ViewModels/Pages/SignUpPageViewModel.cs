@@ -1,6 +1,8 @@
-﻿using System.Windows.Input;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Windows.Input;
 using ToDoList.Core.Helpers;
 using ToDoList.Core.Models.Base;
+using ToDoList.Database;
 using ToDoList.Database.Entities;
 
 namespace ToDoList.Core.ViewModels.Pages;
