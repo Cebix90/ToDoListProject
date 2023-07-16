@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using ToDoList.Core.ViewModels;
 using ToDoList.Pages;
@@ -53,6 +54,15 @@ namespace ToDoList
 
         private void WorkTasksPageViewModel_LogoutRequested(object sender, System.EventArgs e)
         {
+            if (isWindowOpen)
+            {
+                var newWorkTaskPage = Application.Current.Windows.OfType<NewWorkTaskPage>().FirstOrDefault();
+                if (newWorkTaskPage != null)
+                {
+                    newWorkTaskPage.Close();
+                }
+            }
+            
             var loginPage = new LoginPage();
             if (Application.Current.MainWindow != null)
             {
@@ -62,5 +72,6 @@ namespace ToDoList
             loginPage.Show();
             this.Close();
         }
+
     }
 }
