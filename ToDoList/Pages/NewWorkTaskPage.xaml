@@ -8,7 +8,8 @@
       Title="NewWorkTaskPage"
       Height="550"
       Width="400"
-      ResizeMode="NoResize">
+      ResizeMode="NoResize"
+      WindowStartupLocation="CenterScreen">
 
     <Window.Background>
         <ImageBrush ImageSource="/Images/WorkTasksBackground.jpg"/>

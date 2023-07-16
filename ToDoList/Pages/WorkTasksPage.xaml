@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:ToDoList"
         mc:Ignorable="d" 
         Title="WorkTasksPage"
-        Height="600"
-        Width="900"
-        ResizeMode="NoResize">
+        Height="700"
+        Width="1100"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
 
     <Window.Background>
         <ImageBrush ImageSource="/Images/WorkTasksBackground.jpg"/>

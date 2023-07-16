@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoList.Pages"
         mc:Ignorable="d"
-        Title="ToDoList" Height="1000" Width="773" WindowStyle="ToolWindow" ResizeMode="NoResize">
+        Title="ToDoList" 
+        Height="1000" 
+        Width="773" 
+        WindowStyle="ToolWindow" 
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
     
     <Window.Background>
         <ImageBrush ImageSource="/Images/Login.png"/>
