@@ -11,6 +11,7 @@ namespace ToDoList
     /// </summary>
     public partial class WorkTasksPage : Window
     {
+        private bool isWindowOpen = false;
         private Guid _loggedInUserId;
         private readonly WorkTasksPageViewModel _workTasksPageViewModel;
 
@@ -32,11 +33,23 @@ namespace ToDoList
 
         private void WorkTasksPageViewModel_NewWorkTaskRequested(object sender, System.EventArgs e)
         {
-            var newWorkTaskPageViewModel = new NewWorkTaskPageViewModel(_loggedInUserId);
+            if (isWindowOpen)
+            {
+                return;
+            }
+
             var newWorkTaskPage = new NewWorkTaskPage(_workTasksPageViewModel.NewWorkTaskPageViewModel);
-            newWorkTaskPage.Height = 450;
-            newWorkTaskPage.Width = 300;
+            newWorkTaskPage.Height = 550;
+            newWorkTaskPage.Width = 400;
+            newWorkTaskPage.Closed += NewWorkTaskPage_Closed;
             newWorkTaskPage.Show();
+
+            isWindowOpen = true;
+        }
+
+        private void NewWorkTaskPage_Closed(object sender, EventArgs e)
+        {
+            isWindowOpen = false;
         }
 
         private void WorkTasksPageViewModel_LogoutRequested(object sender, System.EventArgs e)

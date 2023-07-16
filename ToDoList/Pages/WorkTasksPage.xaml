@@ -5,17 +5,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:local="clr-namespace:ToDoList"
         mc:Ignorable="d" 
-        d:DesignHeight="500" d:DesignWidth="800"
-        Title="WorkTasksPage">
+        Title="WorkTasksPage"
+        Height="600"
+        Width="900"
+        ResizeMode="NoResize">
 
-    <Grid Height="480">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/WorkTasksBackground.jpg"/>
+    </Window.Background>
+
+    <Grid Height="565">
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" HorizontalAlignment="Left" Text="{Binding UserNickname}" />
-        <TextBlock Grid.Row="0" HorizontalAlignment="Center">Your current tasks:</TextBlock>
+        <TextBlock Grid.Row="0" 
+                   Style="{StaticResource LoginTextBlockStyle}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Margin="30 0 0 0"
+                   Text="{Binding UserNickname}"/>
+        <TextBlock Grid.Row="0" 
+                   Style="{StaticResource LoginTextBlockStyle}" >Your current tasks:</TextBlock>
         <StackPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
             <Button Command="{Binding LogoutCommand}"
                     Style="{StaticResource WorkTasksButtons}"
@@ -24,11 +36,14 @@
         </StackPanel>
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <DataGrid x:Name="myDataGrid"
-                      ItemsSource="{Binding WorkTaskList}" 
+                      ItemsSource="{Binding WorkTaskList}"
+                      Background="Gray"
                       Margin="10" 
+                      Width="850"
                       AutoGenerateColumns="False" 
                       CanUserAddRows="False"
-                      IsSynchronizedWithCurrentItem="True">
+                      IsSynchronizedWithCurrentItem="True"
+                      Opacity="0.8">
 
                 <DataGrid.Columns>
                     <DataGridTemplateColumn>
