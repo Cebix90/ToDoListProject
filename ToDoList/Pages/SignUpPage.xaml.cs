@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using ToDoList.Core.ViewModels.Pages;
-using ToDoList.Database;
 
 namespace ToDoList.Pages
 {
@@ -72,5 +71,4 @@ namespace ToDoList.Pages
             MessageBox.Show("You have successfully signed up.");
         }
     }
-
 }
