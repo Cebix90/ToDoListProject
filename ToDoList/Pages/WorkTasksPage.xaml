@@ -8,14 +8,20 @@
         d:DesignHeight="500" d:DesignWidth="800"
         Title="WorkTasksPage">
 
-    <Grid Height="450">
+    <Grid Height="480">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" HorizontalAlignment="Left" Text="{Binding UserNickname}" />
         <TextBlock Grid.Row="0" HorizontalAlignment="Center">Your current tasks:</TextBlock>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button Command="{Binding LogoutCommand}"
+                    Style="{StaticResource WorkTasksButtons}"
+                    Content="Logout"
+                    Margin="0,0,10,0"></Button>
+        </StackPanel>
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <DataGrid x:Name="myDataGrid"
                       ItemsSource="{Binding WorkTaskList}" 
@@ -129,8 +135,7 @@
             </DataGrid>
         </ScrollViewer>
 
-        <StackPanel Grid.Row="2" HorizontalAlignment="Center">
-
+        <StackPanel Grid.Row="2" VerticalAlignment="Center" Margin="20 0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -140,28 +145,21 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Command="{Binding NewWorkTaskCommand}"
-                    Style="{StaticResource DefaultButtonStyle}"
+                    Style="{StaticResource WorkTasksButtons}"
                     Content="Add New Task"></Button>
                 <Button Command="{Binding FinishSelectedTasksCommand}"
                     Grid.Column="1"
-                    Style="{StaticResource DefaultButtonStyle}"
+                    Style="{StaticResource WorkTasksButtons}"
                     Content="End Task"></Button>
                 <Button Command="{Binding SaveChangesSelectedTasksCommand}"
                     Grid.Column="2"
-                    Style="{StaticResource DefaultButtonStyle}"
+                    Style="{StaticResource WorkTasksButtons}"
                     Content="Save Changes"></Button>
                 <Button Command="{Binding DeleteSelectedTasksCommand}"
                         Grid.Column="3"
-                        Style="{StaticResource DefaultButtonStyle}"
+                        Style="{StaticResource WorkTasksButtons}"
                         Content="Remove"></Button>
             </Grid>
-        </StackPanel>
-
-        <StackPanel Grid.Row="2" HorizontalAlignment="Right">
-            <Button Command="{Binding LogoutCommand}"
-                    Style="{StaticResource DefaultButtonStyle}"
-                    Content="Logout"
-                    Margin="0,0,10,0"></Button>
         </StackPanel>
     </Grid>
 </Window>

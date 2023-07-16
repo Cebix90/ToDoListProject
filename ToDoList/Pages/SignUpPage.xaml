@@ -5,19 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoList.Pages"
         mc:Ignorable="d"
-        Title="ToDoList" Height="550" Width="800" WindowStyle="ToolWindow" ResizeMode="NoResize">
-    <Window.Effect>
-        <DropShadowEffect/>
-    </Window.Effect>
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black"/>
-                <GradientStop Color="#FF3355E0" Offset="1"/>
-                <GradientStop Color="#FF190F50" Offset="0"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+        Title="ToDoList" Height="1000" Width="773" WindowStyle="ToolWindow" ResizeMode="NoResize">
+    
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/Login.png"/>
+    </Window.Background>
 
+    <Grid Height="550" Width="400" Background="Black" Opacity="0.9">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -32,7 +26,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="ToDoList SignUp" 
+                <TextBlock Grid.Row="0" Text="Sign Up" 
                            VerticalAlignment="Center" 
                            HorizontalAlignment="Center" 
                            Foreground="White" 
@@ -40,22 +34,26 @@
                            FontWeight="Bold"/>
 
                 <StackPanel Grid.Row="1">
-                    <TextBlock Text="EMAIL" Foreground="White" HorizontalAlignment="Center" ></TextBlock>
-                    <TextBox Margin="10" Text="{Binding NewEmail}" Height="30" Width="300" FontSize="15"/>
+                    <TextBlock Text="EMAIL" Style="{StaticResource SignUpTextBlockStyle}"></TextBlock>
+                    <TextBox Text="{Binding NewEmail}" Style="{StaticResource MainTextBoxStyle}"/>
                 </StackPanel>
                 <StackPanel Grid.Row="2">
-                    <TextBlock Text="PASSWORD" Foreground="White" HorizontalAlignment="Center" ></TextBlock>
-                    <TextBox Margin="10" Text="{Binding NewPassword}" Height="30" Width="300" FontSize="15"/>
+                    <TextBlock Text="PASSWORD" Style="{StaticResource SignUpTextBlockStyle}"></TextBlock>
+                    <TextBox Text="{Binding NewPassword}" Style="{StaticResource MainTextBoxStyle}"/>
                 </StackPanel>
                 <StackPanel Grid.Row="2" Height="81" Margin="0,0,0,80" Grid.RowSpan="3" VerticalAlignment="Bottom">
-                    <TextBlock Text="NICKNAME" Foreground="White" HorizontalAlignment="Center" ></TextBlock>
-                    <TextBox Margin="10" Text="{Binding NewNickName}" Height="30" Width="300" FontSize="15"/>
+                    <TextBlock Text="NICKNAME" Style="{StaticResource SignUpTextBlockStyle}"></TextBlock>
+                    <TextBox Text="{Binding NewNickName}" Style="{StaticResource MainTextBoxStyle}"/>
                 </StackPanel>
                 <StackPanel Grid.Row="4">
-                    <TextBlock Text="COUNTRY" Foreground="White" HorizontalAlignment="Center" ></TextBlock>
-                    <TextBox Margin="10" Text="{Binding NewCountry}" Height="30" Width="300" FontSize="15"/>
+                    <TextBlock Text="COUNTRY" Style="{StaticResource SignUpTextBlockStyle}"></TextBlock>
+                    <TextBox Text="{Binding NewCountry}" Style="{StaticResource MainTextBoxStyle}"/>
                 </StackPanel>
-                <Button Grid.Row="5" Command="{Binding SignUpCommand}" Margin="10" Height="40" Width="300" Content="Submit" Background="White" Foreground="#FF3355E0" FontSize="25" FontWeight="Bold"></Button>
+
+                <Button Grid.Row="5" Command="{Binding SignUpCommand}"
+                        Style="{StaticResource MainButtonStyle}"
+                        Content="SUBMIT"></Button>
+
                 <StackPanel Grid.Row="6" VerticalAlignment="Center">
                     <TextBlock Text="Go back to login page." Foreground="White" HorizontalAlignment="Center" MouseLeftButtonUp="SignUpPageViewModel_LoginRequested">
                         <TextBlock.Style>
