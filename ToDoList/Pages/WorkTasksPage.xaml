@@ -76,10 +76,16 @@
                     <DataGridTemplateColumn Width="22">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}" />
+                                <CheckBox IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.15" ScaleY="1.5"/>
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+
+
                     <DataGridTextColumn Header="No." Width="40" Binding="{Binding RowNumber}" />
 
                     <DataGridTextColumn Header="Title" Width="150" Binding="{Binding Title}">
