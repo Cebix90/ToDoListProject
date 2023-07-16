@@ -16,6 +16,14 @@
         <ImageBrush ImageSource="/Images/WorkTasksBackground.jpg" />
     </Window.Background>
 
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/DataGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid Height="665">
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
@@ -30,16 +38,12 @@
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
 
-            <Image Source="/Images/Logo.png" Margin="20">
-                <!--<Image.RenderTransform>
-                    <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
-                </Image.RenderTransform>-->
-            </Image>
+            <Image Source="/Images/Logo.png" Margin="20"/>
 
             <TextBlock Grid.Column="1" 
-                   Style="{StaticResource LoginTextBlockStyle}"
-                   VerticalAlignment="Center"
-                   FontSize="30">Your current tasks:</TextBlock>
+                       Style="{StaticResource LoginTextBlockStyle}"
+                       VerticalAlignment="Center"
+                       FontSize="30">Your current tasks:</TextBlock>
 
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
@@ -48,6 +52,7 @@
                 </Grid.RowDefinitions>
                 <TextBlock Style="{StaticResource LoginTextBlockStyle}"
                            VerticalAlignment="Center"
+                           FontSize="30"
                            Text="{Binding UserNickname}"/>
                 <Button Grid.Row="1" Command="{Binding LogoutCommand}"
                         Style="{StaticResource WorkTasksButtons}"
@@ -56,30 +61,28 @@
             </Grid>
         </Grid>
 
-        
-
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <DataGrid x:Name="myDataGrid"
                       ItemsSource="{Binding WorkTaskList}"
                       Background="Gray"
-                      Margin="10" 
-                      Width="850"
+                      Margin="0" 
+                      Width="1000"
                       AutoGenerateColumns="False" 
                       CanUserAddRows="False"
                       IsSynchronizedWithCurrentItem="True"
                       Opacity="0.8">
 
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="22">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="No." Binding="{Binding RowNumber}" />
+                    <DataGridTextColumn Header="No." Width="40" Binding="{Binding RowNumber}" />
 
-                    <DataGridTextColumn Header="Title" Binding="{Binding Title}">
+                    <DataGridTextColumn Header="Title" Width="150" Binding="{Binding Title}">
                         <DataGridTextColumn.CellStyle>
                             <Style TargetType="DataGridCell">
                                 <Style.Triggers>
@@ -91,7 +94,7 @@
                         </DataGridTextColumn.CellStyle>
                     </DataGridTextColumn>
 
-                    <DataGridTextColumn Header="Description" Binding="{Binding Description}">
+                    <DataGridTextColumn Header="Description" Width="200" Binding="{Binding Description}">
                         <DataGridTextColumn.CellStyle>
                             <Style TargetType="DataGridCell">
                                 <Style.Triggers>
@@ -103,7 +106,7 @@
                         </DataGridTextColumn.CellStyle>
                     </DataGridTextColumn>
 
-                    <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}">
+                    <DataGridTextColumn Header="Start Date" Width="165" Binding="{Binding StartDate}">
                         <DataGridTextColumn.CellStyle>
                             <Style TargetType="DataGridCell">
                                 <Style.Triggers>
@@ -115,7 +118,7 @@
                         </DataGridTextColumn.CellStyle>
                     </DataGridTextColumn>
 
-                    <DataGridTextColumn Header="End Date" Binding="{Binding EndDate}">
+                    <DataGridTextColumn Header="End Date" Width="165" Binding="{Binding EndDate}">
                         <DataGridTextColumn.CellStyle>
                             <Style TargetType="DataGridCell">
                                 <Style.Triggers>
@@ -127,7 +130,7 @@
                         </DataGridTextColumn.CellStyle>
                     </DataGridTextColumn>
 
-                    <DataGridTemplateColumn Header="Category">
+                    <DataGridTemplateColumn Header="Category" Width="100">
                         <DataGridTemplateColumn.CellStyle>
                             <Style TargetType="DataGridCell">
                                 <Style.Triggers>
@@ -149,7 +152,7 @@
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="Status">
+                    <DataGridTemplateColumn Header="Status" Width="150">
                         <DataGridTemplateColumn.CellStyle>
                             <Style TargetType="DataGridCell">
                                 <Style.Triggers>

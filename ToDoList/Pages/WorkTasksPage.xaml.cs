@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using ToDoList.Core.ViewModels;
-using ToDoList.Core.ViewModels.Pages;
 using ToDoList.Pages;
 
 namespace ToDoList
