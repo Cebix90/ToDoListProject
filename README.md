@@ -1,17 +1,19 @@
+#ToDoList
+
 ToDoList is a desktop application with a WPF user interface that allows you to manage your tasks in a CRUD (Create, Read, Update, Delete) format. The project uses an SQLite database to store data.
 
-System Requirements
+##System Requirements
 There are no specific system requirements for this project.
 
-Installation
+##Installation
 All required libraries are included in the project. To run the project, you will need Visual Studio or another development environment that supports WPF and databases.
 
 There is no installation process for this project.
 
-Usage
+##Usage
 To use ToDoList, simply open the project in your development environment and run it. You will need to log in or create a new user account to access the application. Once logged in, you can add, update, and delete tasks using the user interface.
 
-Screenshots
+##Screenshots
 Here are some screenshots of the ToDoList application:
 <table>
   <tr>
@@ -26,5 +28,5 @@ Here are some screenshots of the ToDoList application:
   </tr>
 </table>
 
-Future Development
+##Future Development
 This is the first version of the ToDoList application. In the future, I plan to expand the project and switch the database to MSSQL.
