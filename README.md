@@ -19,8 +19,6 @@ Here are some screenshots of the ToDoList application:
     <td><img src="https://github.com/Cebix90/ToDoListProject/assets/79079434/027e603e-089b-43a9-b300-cbe6bde5cdaf" width="200"></td>
     <td><img src="https://github.com/Cebix90/ToDoListProject/assets/79079434/11fd59e3-db63-453f-b09a-07d88ce053d1" width="200"></td>
     <td><img src="https://github.com/Cebix90/ToDoListProject/assets/79079434/7baca87c-9fda-4cbb-9654-bc1ccd5a0a5c" width="200"></td>
-  </tr>
-  <tr>
     <td><img src="https://github.com/Cebix90/ToDoListProject/assets/79079434/6f8a0dd0-f80e-4bb6-84d4-28115505ef61" width="200"></td>
   </tr>
 </table>
