@@ -13,6 +13,7 @@
     <None Remove="Images\Login.png" />
     <None Remove="Images\Logo.png" />
     <None Remove="Images\WorkTasksBackground.jpg" />
+    <None Remove="Pages\ToDoListIcon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +32,7 @@
     <Resource Include="Images\Login.png" />
     <Resource Include="Images\Logo.png" />
     <Resource Include="Images\WorkTasksBackground.jpg" />
+    <Resource Include="Images\ToDoListIcon.png" />
   </ItemGroup>
 
 </Project>

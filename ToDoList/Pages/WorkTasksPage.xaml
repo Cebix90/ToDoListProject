@@ -10,7 +10,7 @@
         Width="1100"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Icon="/Images/Logo.png">
+        Icon="/Images/ToDoListIcon.png">
 
     <Window.Background>
         <ImageBrush ImageSource="/Images/WorkTasksBackground.jpg" />

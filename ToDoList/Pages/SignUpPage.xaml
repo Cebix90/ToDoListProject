@@ -10,7 +10,8 @@
         Width="773" 
         WindowStyle="ToolWindow" 
         ResizeMode="NoResize"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Icon="/Images/ToDoListIcon.png">
     
     <Window.Background>
         <ImageBrush ImageSource="/Images/Login.png"/>
