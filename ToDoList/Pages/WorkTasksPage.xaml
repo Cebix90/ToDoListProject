@@ -198,7 +198,7 @@
                 <Button Command="{Binding FinishSelectedTasksCommand}"
                     Grid.Column="1"
                     Style="{StaticResource WorkTasksButtons}"
-                    Content="End Task"></Button>
+                    Content="Finish Task"></Button>
                 <Button Command="{Binding SaveChangesSelectedTasksCommand}"
                     Grid.Column="2"
                     Style="{StaticResource WorkTasksButtons}"
