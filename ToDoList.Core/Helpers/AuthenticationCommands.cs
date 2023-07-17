@@ -24,18 +24,19 @@ public class AuthenticationCommands
     /// <param name="email">The user's email.</param>
     /// <param name="password">The user's password.</param>
     /// <returns>True if the authentication is successful; otherwise, false.</returns>
-    public bool AuthenticateUser(string email, string password)
+    public virtual bool AuthenticateUser(string email, string password)
     {
         bool isAuthenticated = _context.Users.Any(u => u.Email == email && u.Password == password);
         return isAuthenticated;
     }
+
 
     /// <summary>
     /// Retrieves the user ID based on the provided email.
     /// </summary>
     /// <param name="email">The user's email.</param>
     /// <returns>The user ID or Guid.Empty if the user is not found.</returns>
-    public Guid GetUserIdByEmail(string email)
+    public virtual Guid GetUserIdByEmail(string email)
     {
         var user = _context.Users.FirstOrDefault(u => u.Email == email);
         if (user != null)

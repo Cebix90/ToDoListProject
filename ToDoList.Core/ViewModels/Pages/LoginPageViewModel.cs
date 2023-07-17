@@ -7,6 +7,7 @@ namespace ToDoList.Core.ViewModels.Pages
 {
     public class LoginPageViewModel : BaseViewModel
     {
+        public AuthenticationCommands AuthenticationCommands { get; set; }
         /// <summary>
         /// Event raised when the login is successful.
         /// </summary>
@@ -29,7 +30,7 @@ namespace ToDoList.Core.ViewModels.Pages
 
         private string _email;
         private string _password;
-        private string _maskedPassword;
+        /*private string _maskedPassword;*/
         private readonly ToDoListDbContext _context;
         private readonly AuthenticationCommands _authcommands;
 
@@ -53,6 +54,7 @@ namespace ToDoList.Core.ViewModels.Pages
             SignUpCommand = new RelayCommand(NavigateToSignUp);
             LoginCommand = new RelayCommand(Login);
             _authcommands = new AuthenticationCommands(_context);
+            AuthenticationCommands = new AuthenticationCommands(_context);
         }
 
         /// <summary>
@@ -75,22 +77,6 @@ namespace ToDoList.Core.ViewModels.Pages
         }
 
         /// <summary>
-        /// Gets or sets the masked password.
-        /// </summary>
-        public string MaskedPassword
-        {
-            get { return _maskedPassword; }
-            set
-            {
-                if (_maskedPassword != value)
-                {
-                    _maskedPassword = value;
-                    OnPropertyChanged(nameof(MaskedPassword));
-                }
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the password.
         /// </summary>
         public string Password
@@ -104,22 +90,16 @@ namespace ToDoList.Core.ViewModels.Pages
                 if (_password != value)
                 {
                     _password = value;
-                    MaskedPassword = MaskPassword(_password);
                     OnPropertyChanged(nameof(Password));
                 }
             }
         }
 
-        private string MaskPassword(string password)
-        {
-            return new string('*', password.Length);
-        }
-
         private void Login()
         {
             string hashedPassword = HashPassword(Password);
-            Guid userId = _authcommands.GetUserIdByEmail(Email);
-            if (_authcommands.AuthenticateUser(Email, Password))
+            Guid userId = AuthenticationCommands.GetUserIdByEmail(Email);
+            if (AuthenticationCommands.AuthenticateUser(Email, Password))
             {
                 LoggedInUserId = userId;
                 LoginSuccess?.Invoke(this, EventArgs.Empty);
