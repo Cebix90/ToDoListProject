@@ -1,4 +1,4 @@
-#ToDoList
+# ToDoList
 
 ToDoList is a desktop application with a WPF user interface that allows you to manage your tasks in a CRUD (Create, Read, Update, Delete) format. The project uses an SQLite database to store data.
 
