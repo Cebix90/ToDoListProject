@@ -57,8 +57,8 @@ public class RelayCommand : ICommand
     /// <summary>
     /// Raises the <see cref="CanExecuteChanged"/> event.
     /// </summary>
-    /*public void RaiseCanExecuteChanged()
+    public void RaiseCanExecuteChanged()
     {
         CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-    }*/
+    }
 }

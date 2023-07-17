@@ -99,6 +99,9 @@ public class WorkTasksPageViewModel : BaseViewModel
         LoadTasksFromDatabase();
     }
 
+    /// <summary>
+    /// Loads tasks from the database and updates the task list.
+    /// </summary>
     private void LoadTasksFromDatabase()
     {
         var tasks = DatabaseLocator.Database.WorkTasks
@@ -128,6 +131,9 @@ public class WorkTasksPageViewModel : BaseViewModel
         UpdateRowNumbers();
     }
 
+    /// <summary>
+    /// Navigates to the new work task page and initializes the view model for the page.
+    /// </summary>
     private void NavigateToNewWorkTaskPage()
     {
         NewWorkTaskPageViewModel = new NewWorkTaskPageViewModel(_loggedInUserId);
@@ -135,6 +141,9 @@ public class WorkTasksPageViewModel : BaseViewModel
         NewWorkTaskRequested?.Invoke(this, EventArgs.Empty);
     }
 
+    /// <summary>
+    /// Marks the selected tasks as completed, updates their properties, and saves the changes to the database.
+    /// </summary>
     private void FinishSelectedTask()
     {
         var selectedTasks = WorkTaskList.Where(x => x.IsSelected).ToList();
@@ -160,6 +169,9 @@ public class WorkTasksPageViewModel : BaseViewModel
         DatabaseLocator.Database.SaveChanges();
     }
 
+    /// <summary>
+    /// Saves changes for the selected tasks by updating their corresponding entities in the database.
+    /// </summary>
     private void SaveChangesSelectedTasks()
     {
         var selectedTasks = WorkTaskList.Where(x => x is { IsSelected: true, IsFinalized: false }).ToList();
@@ -179,6 +191,9 @@ public class WorkTasksPageViewModel : BaseViewModel
         DatabaseLocator.Database.SaveChanges();
     }
 
+    /// <summary>
+    /// Deletes the selected tasks from the task list and removes their corresponding entities from the database.
+    /// </summary>
     private void DeleteSelectedTasks()
     {
         var selectedTasks = WorkTaskList.Where(x => x.IsSelected).ToList();
@@ -199,6 +214,11 @@ public class WorkTasksPageViewModel : BaseViewModel
         UpdateRowNumbers();
     }
 
+    /// <summary>
+    /// Handles the event when a task is added, and updates the task list accordingly.
+    /// </summary>
+    /// <param name="sender">The sender of the event.</param>
+    /// <param name="e">The event arguments containing the added task.</param>
     private void HandleTaskAdded(object sender, TaskAddedEventArgs e)
     {
         var addedTask = e.AddedTask;
@@ -222,7 +242,10 @@ public class WorkTasksPageViewModel : BaseViewModel
             UpdateRowNumbers();
         }
     }
-    
+
+    /// <summary>
+    /// Updates the row numbers of the work task view models in the task list.
+    /// </summary>
     private void UpdateRowNumbers()
     {
         for (int i = 0; i < WorkTaskList.Count; i++)
@@ -230,7 +253,10 @@ public class WorkTasksPageViewModel : BaseViewModel
             WorkTaskList[i].RowNumber = i + 1;
         }
     }
-    
+
+    /// <summary>
+    /// Initiates the logout process by raising the logout event.
+    /// </summary>
     private void Logout()
     {
         LogoutRequested?.Invoke(this, EventArgs.Empty);

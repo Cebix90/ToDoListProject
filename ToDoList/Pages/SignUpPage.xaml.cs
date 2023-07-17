@@ -30,6 +30,11 @@ namespace ToDoList.Pages
             DataContext = _signUpPageViewModel;
         }
 
+        /// <summary>
+        /// Handles the event when the login is requested from the sign-up page, navigates to the login page, and closes the current sign-up page.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void SignUpPageViewModel_LoginRequested(object sender, EventArgs e)
         {
             var loginPage = new LoginPage();
@@ -41,31 +46,61 @@ namespace ToDoList.Pages
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the event when the email is already taken, and displays a message box with an appropriate message.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void SignUpPageViewModel_EmailIsTaken(object sender, EventArgs e)
         {
             MessageBox.Show("Email is already taken.");
         }
 
+        /// <summary>
+        /// Handles the event when the nickname is already taken, and displays a message box with an appropriate message.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void SignUpPageViewModel_NickNameIsTaken(object sender, EventArgs e)
         {
             MessageBox.Show("Nickname is already taken.");
         }
 
+        /// <summary>
+        /// Handles the event when the password is too short, and displays a message box with an appropriate message.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void SignUpPageViewModel_PasswordIsToShort(object sender, EventArgs e)
         {
             MessageBox.Show("Password must be at least 5 characters long.");
         }
 
+        /// <summary>
+        /// Handles the event when the email is not in the correct form, and displays a message box with an appropriate message.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void SignUpPageViewModel_EmailIsNotInCorrectForm(object sender, EventArgs e)
         {
             MessageBox.Show("Email is not in a valid format.");
         }
 
+        /// <summary>
+        /// Handles the event when the nickname must be entered, and displays a message box with an appropriate message.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void SignUpPageViewModel_NickNameMustBeEntered(object sender, EventArgs e)
         {
             MessageBox.Show("Nickname must be entered.");
         }
 
+        /// <summary>
+        /// Handles the event when the sign-up submission is successful, and displays a message box with an appropriate message.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void SignUpPageViewModel_SubmitSuccessfully(object sender, EventArgs e)
         {
             MessageBox.Show("You have successfully signed up.");

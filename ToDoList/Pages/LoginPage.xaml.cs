@@ -34,10 +34,21 @@ namespace ToDoList.Pages
             Loaded += LoginPage_Loaded;
         }
 
+        /// <summary>
+        /// Handles the Loaded event of the login page and subscribes to the PasswordChanged event of the password box.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void LoginPage_Loaded(object sender, RoutedEventArgs e)
         {
             PasswordBox.PasswordChanged += PasswordBox_PasswordChanged;
         }
+
+        /// <summary>
+        /// Handles the event when the login is successful, navigates to the work task page, and closes the current login page.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void LoginPageViewModel_LoginSuccess(object sender, EventArgs e)
         {
             var workTaskPage = new WorkTasksPage(_loginPageViewModel.LoggedInUserId);
@@ -50,6 +61,11 @@ namespace ToDoList.Pages
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the event when the login fails, displays a message box with an appropriate message, and clears the email and password fields.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void LoginPageViewModel_LoginFailed(object sender, EventArgs e)
         {
             MessageBox.Show("Wrong Email or Password");
@@ -57,6 +73,11 @@ namespace ToDoList.Pages
             PasswordBox.Password = "";
         }
 
+        /// <summary>
+        /// Handles the PasswordChanged event of the password box and updates the password in the view model accordingly.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (sender is PasswordBox passwordBox)
@@ -65,6 +86,11 @@ namespace ToDoList.Pages
             }
         }
 
+        /// <summary>
+        /// Handles the event when the sign-up is requested, navigates to the sign-up page, and closes the current login page.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void LoginPageViewModel_SignUpRequested(object sender, EventArgs e)
         {
             var signUpPage = new SignUpPage();
@@ -76,6 +102,11 @@ namespace ToDoList.Pages
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the KeyUp event of the password box and executes the login command when the Enter key is pressed.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void PasswordBox_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -84,6 +115,11 @@ namespace ToDoList.Pages
             }
         }
 
+        /// <summary>
+        /// Handles the KeyDown event of the text box and executes the login command when the Enter key is pressed.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return || e.Key == Key.Enter)

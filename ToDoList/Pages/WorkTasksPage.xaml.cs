@@ -31,6 +31,11 @@ namespace ToDoList
             DataContext = _workTasksPageViewModel;
         }
 
+        /// <summary>
+        /// Handles the event when a new work task is requested, opens the new work task page, and prevents multiple windows from opening.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void WorkTasksPageViewModel_NewWorkTaskRequested(object sender, System.EventArgs e)
         {
             if (isWindowOpen)
@@ -47,11 +52,21 @@ namespace ToDoList
             isWindowOpen = true;
         }
 
+        /// <summary>
+        /// Handles the event when the new work task page is closed and sets the window status accordingly.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void NewWorkTaskPage_Closed(object sender, EventArgs e)
         {
             isWindowOpen = false;
         }
 
+        /// <summary>
+        /// Handles the event when the logout is requested, closes the new work task page if it is open, and navigates to the login page.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void WorkTasksPageViewModel_LogoutRequested(object sender, System.EventArgs e)
         {
             if (isWindowOpen)
@@ -72,6 +87,5 @@ namespace ToDoList
             loginPage.Show();
             this.Close();
         }
-
     }
 }

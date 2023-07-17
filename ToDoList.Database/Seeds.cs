@@ -41,6 +41,9 @@ public class Seeds
         }
     }
 
+    /// <summary>
+    /// Seeds the database with sample user data.
+    /// </summary>
     private void SeedUsers()
     {
         List<User> users = new List<User>
@@ -56,6 +59,9 @@ public class Seeds
         _context.SaveChanges();
     }
 
+    /// <summary>
+    /// Seeds the database with sample category data.
+    /// </summary>
     private void SeedCategories()
     {
         List<Category> categories = new List<Category>
@@ -71,6 +77,9 @@ public class Seeds
         _context.SaveChanges();
     }
 
+    /// <summary>
+    /// Seeds the database with sample tag data.
+    /// </summary>
     private void SeedTags()
     {
         List<Tag> tags = new List<Tag>
@@ -87,6 +96,9 @@ public class Seeds
         _context.SaveChanges();
     }
 
+    /// <summary>
+    /// Seeds the database with sample task data.
+    /// </summary>
     private void SeedTasks()
     {
         List<WorkTask> tasks = new List<WorkTask>

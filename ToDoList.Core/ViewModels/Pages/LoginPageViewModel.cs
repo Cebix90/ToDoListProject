@@ -32,7 +32,6 @@ namespace ToDoList.Core.ViewModels.Pages
         private string _password;
         /*private string _maskedPassword;*/
         private readonly ToDoListDbContext _context;
-        private readonly AuthenticationCommands _authcommands;
 
         /// <summary>
         /// Command for logging in.
@@ -53,7 +52,6 @@ namespace ToDoList.Core.ViewModels.Pages
             _context = context;
             SignUpCommand = new RelayCommand(NavigateToSignUp);
             LoginCommand = new RelayCommand(Login);
-            _authcommands = new AuthenticationCommands(_context);
             AuthenticationCommands = new AuthenticationCommands(_context);
         }
 
@@ -95,6 +93,9 @@ namespace ToDoList.Core.ViewModels.Pages
             }
         }
 
+        /// <summary>
+        /// Performs the login process by authenticating the user with the provided email and password.
+        /// </summary>
         private void Login()
         {
             string hashedPassword = HashPassword(Password);
@@ -110,6 +111,9 @@ namespace ToDoList.Core.ViewModels.Pages
             }
         }
 
+        /// <summary>
+        /// Hashes the given password using the SHA256 algorithm.
+        /// </summary>
         private string HashPassword(string password)
         {
             if (password == null)
@@ -124,6 +128,9 @@ namespace ToDoList.Core.ViewModels.Pages
             }
         }
 
+        /// <summary>
+        /// Navigates to the sign-up page.
+        /// </summary>
         private void NavigateToSignUp()
         {
             SignUpRequested?.Invoke(this, EventArgs.Empty);

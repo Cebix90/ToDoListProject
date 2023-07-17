@@ -142,6 +142,9 @@ public class SignUpPageViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Adds a new user to the database with the provided information.
+    /// </summary>
     private void AddNewUser()
     {
         bool emailExists = DatabaseLocator.Database.Users.Any(u => u.Email == NewEmail);
@@ -203,6 +206,9 @@ public class SignUpPageViewModel : BaseViewModel
         ClearFields();
     }
 
+    /// <summary>
+    /// Clears the fields used for user registration.
+    /// </summary>
     private void ClearFields()
     {
         NewEmail = string.Empty;
@@ -211,6 +217,9 @@ public class SignUpPageViewModel : BaseViewModel
         NewCountry = string.Empty;
     }
 
+    /// <summary>
+    /// Navigates to the login page.
+    /// </summary>
     private void NavigateToLoginPage()
     {
         LoginRequested?.Invoke(this, EventArgs.Empty);

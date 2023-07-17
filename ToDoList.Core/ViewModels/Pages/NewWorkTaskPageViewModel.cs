@@ -77,6 +77,9 @@ namespace ToDoList.Core.ViewModels.Pages
             NewWorkTaskStatus = "Pending";
         }
 
+        /// <summary>
+        /// Adds a new work task to the database with the provided information.
+        /// </summary>
         private void AddNewTask()
         {
             if (string.IsNullOrEmpty(NewWorkTaskTitle))
@@ -113,6 +116,9 @@ namespace ToDoList.Core.ViewModels.Pages
             ClearFields();
         }
 
+        /// <summary>
+        /// Clears the fields used for adding a new work task.
+        /// </summary>
         private void ClearFields()
         {
             NewWorkTaskTitle = string.Empty;

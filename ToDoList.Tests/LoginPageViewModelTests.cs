@@ -10,18 +10,20 @@ namespace ToDoList.Tests.Core.ViewModels.Pages
     [TestClass]
     public class LoginPageViewModelTests
     {
+        /// <summary>
+        /// Initializes the database before each test by creating a new database context and ensuring its creation. 
+        /// It also adds a test user to the database if it doesn't already exist.
+        /// </summary>
         [TestInitialize]
         public void InitializeDatabase()
         {
             DatabaseLocator.Database = new ToDoListDbContext();
             DatabaseLocator.Database.Database.EnsureCreated();
-
-            // Check if the user already exists in the Users table
+            
             var existingUser = DatabaseLocator.Database.Users.FirstOrDefault(u => u.Email == "test@example.com");
 
             if (existingUser == null)
             {
-                // Add a test user to the Users table
                 var user = new User
                 {
                     Email = "test@example.com",
@@ -34,11 +36,12 @@ namespace ToDoList.Tests.Core.ViewModels.Pages
             }
         }
 
-
+        /// <summary>
+        /// Tests the LoginCommand execution for a successful login.
+        /// </summary>
         [TestMethod]
         public void LoginCommand_Executed_SuccessfulLogin()
         {
-            // Arrange
             DatabaseLocator.Database = new ToDoListDbContext();
             DatabaseLocator.Database.Database.EnsureCreated();
 
@@ -56,18 +59,18 @@ namespace ToDoList.Tests.Core.ViewModels.Pages
 
             bool loginSuccessEventRaised = false;
             viewModel.LoginSuccess += (sender, args) => loginSuccessEventRaised = true;
-
-            // Act
+            
             viewModel.LoginCommand.Execute(null);
-
-            // Assert
+            
             Assert.IsTrue(loginSuccessEventRaised);
         }
 
+        /// <summary>
+        /// Tests the LoginCommand execution for a failed login.
+        /// </summary>
         [TestMethod]
         public void LoginCommand_Executed_FailedLogin()
         {
-            // Arrange
             var authenticationCommandsMock = new Mock<AuthenticationCommands>(MockBehavior.Strict, new ToDoListDbContext());
 
             authenticationCommandsMock.Setup(ac => ac.AuthenticateUser(It.IsAny<string>(), It.IsAny<string>())).Returns(false);
@@ -81,18 +84,18 @@ namespace ToDoList.Tests.Core.ViewModels.Pages
 
             bool loginFailedEventRaised = false;
             viewModel.LoginFailed += (sender, args) => loginFailedEventRaised = true;
-
-            // Act
+            
             viewModel.LoginCommand.Execute(null);
-
-            // Assert
+            
             Assert.IsTrue(loginFailedEventRaised);
         }
 
+        /// <summary>
+        /// Tests the LoginCommand execution and verifies that the LoginSuccess event is raised with the correct user ID.
+        /// </summary>
         [TestMethod]
         public void LoginCommand_Executed_RaisesLoginSuccessWithCorrectUserId()
         {
-            // Arrange
             var dbContextMock = new Mock<ToDoListDbContext>();
             var authCommandsMock = new Mock<AuthenticationCommands>(dbContextMock.Object);
             var loggedInUserId = Guid.NewGuid();
@@ -103,7 +106,7 @@ namespace ToDoList.Tests.Core.ViewModels.Pages
             {
                 Email = "test@example.com",
                 Password = "password",
-                AuthenticationCommands = authCommandsMock.Object // Ustaw właściwość AuthenticationCommands na zmockowany obiekt
+                AuthenticationCommands = authCommandsMock.Object
             };
 
             bool loginSuccessEventRaised = false;
@@ -113,28 +116,26 @@ namespace ToDoList.Tests.Core.ViewModels.Pages
                 loginSuccessEventRaised = true;
                 raisedUserId = viewModel.LoggedInUserId;
             };
-
-            // Act
+            
             viewModel.LoginCommand.Execute(null);
-
-            // Assert
+            
             Assert.IsTrue(loginSuccessEventRaised);
             Assert.AreEqual(loggedInUserId, raisedUserId);
         }
 
+        /// <summary>
+        /// Tests the SignUpCommand execution and verifies that the SignUpRequested event is raised.
+        /// </summary>
         [TestMethod]
         public void SignUpCommand_Executed_RaisesSignUpRequestedEvent()
         {
-            // Arrange
             var dbContextMock = new Mock<ToDoListDbContext>();
             var viewModel = new LoginPageViewModel(dbContextMock.Object);
             bool signUpRequestedEventRaised = false;
             viewModel.SignUpRequested += (sender, args) => signUpRequestedEventRaised = true;
-
-            // Act
+            
             viewModel.SignUpCommand.Execute(null);
-
-            // Assert
+            
             Assert.IsTrue(signUpRequestedEventRaised);
         }
     }
