@@ -206,7 +206,7 @@
                 <Button Command="{Binding DeleteSelectedTasksCommand}"
                         Grid.Column="3"
                         Style="{StaticResource WorkTasksButtons}"
-                        Content="Remove"></Button>
+                        Content="Remove Task"></Button>
             </Grid>
         </StackPanel>
     </Grid>
