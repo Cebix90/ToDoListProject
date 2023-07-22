@@ -2,7 +2,6 @@
 using ToDoList.Core.Helpers;
 using ToDoList.Core.Models.Base;
 using ToDoList.Database;
-using BC = BCrypt.Net.BCrypt;
 
 namespace ToDoList.Core.ViewModels.Pages
 {
