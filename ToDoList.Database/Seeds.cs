@@ -1,4 +1,5 @@
 ﻿using ToDoList.Database.Entities;
+using BC = BCrypt.Net.BCrypt;
 
 namespace ToDoList.Database;
 
@@ -48,11 +49,11 @@ public class Seeds
     {
         List<User> users = new List<User>
         {
-            new User { Id = Guid.Parse("6e8b45b7-4e3f-4d21-a60e-8e81390e8f59"), Email = "jk@example.com", Password = "password1", NickName = "User1", Country = "Poland" },
-            new User { Id = Guid.Parse("2e5c7dbf-82e1-45b0-9be0-8e7ba8e57b11"), Email = "an@example.com", Password = "password2", NickName = "User2", Country = "Poland" },
-            new User { Id = Guid.Parse("f5d3c88f-902b-4d8f-85e5-41bcf5d2cbb1"), Email = "mk@example.com", Password = "password3", NickName = "User3", Country = "Poland" },
-            new User { Id = Guid.Parse("94a860d3-28d6-4fe6-ae0d-ebf47d799c51"), Email = "ka@example.com", Password = "password4", NickName = "User4", Country = "Poland" },
-            new User { Id = Guid.Parse("1f73db4e-73e3-4397-b960-2c68b60792d4"), Email = "aj@example.com", Password = "password5", NickName = "User5", Country = "Poland" }
+            new User { Id = Guid.Parse("6e8b45b7-4e3f-4d21-a60e-8e81390e8f59"), Email = "jk@example.com", Password = BC.HashPassword("password1"), NickName = "User1", Country = "Poland" },
+            new User { Id = Guid.Parse("2e5c7dbf-82e1-45b0-9be0-8e7ba8e57b11"), Email = "an@example.com", Password = BC.HashPassword("password2"), NickName = "User2", Country = "Poland" },
+            new User { Id = Guid.Parse("f5d3c88f-902b-4d8f-85e5-41bcf5d2cbb1"), Email = "mk@example.com", Password = BC.HashPassword("password3"), NickName = "User3", Country = "Poland" },
+            new User { Id = Guid.Parse("94a860d3-28d6-4fe6-ae0d-ebf47d799c51"), Email = "ka@example.com", Password = BC.HashPassword("password4"), NickName = "User4", Country = "Poland" },
+            new User { Id = Guid.Parse("1f73db4e-73e3-4397-b960-2c68b60792d4"), Email = "aj@example.com", Password = BC.HashPassword("password5"), NickName = "User5", Country = "Poland" }
         };
 
         _context.Users.AddRange(users);
