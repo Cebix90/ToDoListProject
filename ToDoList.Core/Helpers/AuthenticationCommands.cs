@@ -1,4 +1,5 @@
 ﻿using ToDoList.Database;
+using BC = BCrypt.Net.BCrypt;
 
 namespace ToDoList.Core.Helpers;
 
@@ -26,8 +27,16 @@ public class AuthenticationCommands
     /// <returns>True if the authentication is successful; otherwise, false.</returns>
     public virtual bool AuthenticateUser(string email, string password)
     {
-        bool isAuthenticated = _context.Users.Any(u => u.Email == email && u.Password == password);
-        return isAuthenticated;
+        //bool isAuthenticated = _context.Users.Any(u => u.Email == email && u.Password == password);
+        
+        string hashedPassword = _context.Users.FirstOrDefault(u => u.Email == email)?.Password;
+
+        if (email == null || hashedPassword == null)
+        {
+            return false;
+        }
+
+        return BC.Verify(password, hashedPassword);
     }
 
 

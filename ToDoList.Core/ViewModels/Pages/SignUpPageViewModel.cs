@@ -1,7 +1,9 @@
-﻿using System.Windows.Input;
+﻿using System.Runtime.InteropServices.Marshalling;
+using System.Windows.Input;
 using ToDoList.Core.Helpers;
 using ToDoList.Core.Models.Base;
 using ToDoList.Database.Entities;
+using BC = BCrypt.Net.BCrypt;
 
 namespace ToDoList.Core.ViewModels.Pages;
 
@@ -99,6 +101,7 @@ public class SignUpPageViewModel : BaseViewModel
             if (_password != value)
             {
                 _password = value;
+                
                 OnPropertyChanged(nameof(NewPassword));
             }
         }
@@ -194,7 +197,7 @@ public class SignUpPageViewModel : BaseViewModel
         DatabaseLocator.Database.Users.Add(new User
         {
             Email = NewEmail,
-            Password = NewPassword,
+            Password = BC.HashPassword(NewPassword),
             NickName = NewNickName,
             Country = NewCountry
         });
@@ -205,6 +208,20 @@ public class SignUpPageViewModel : BaseViewModel
 
         ClearFields();
     }
+
+    /*private string HashPassword(string password)
+    {
+        if (password == null)
+        {
+            return null;
+        }
+
+        using (var sha256 = System.Security.Cryptography.SHA256.Create())
+        {
+            var hashedBytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            return System.Convert.ToBase64String(hashedBytes);
+        }
+    }*/
 
     /// <summary>
     /// Clears the fields used for user registration.

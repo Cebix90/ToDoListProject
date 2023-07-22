@@ -2,6 +2,7 @@
 using ToDoList.Core.Helpers;
 using ToDoList.Core.Models.Base;
 using ToDoList.Database;
+using BC = BCrypt.Net.BCrypt;
 
 namespace ToDoList.Core.ViewModels.Pages
 {
@@ -98,7 +99,6 @@ namespace ToDoList.Core.ViewModels.Pages
         /// </summary>
         private void Login()
         {
-            string hashedPassword = HashPassword(Password);
             Guid userId = AuthenticationCommands.GetUserIdByEmail(Email);
             if (AuthenticationCommands.AuthenticateUser(Email, Password))
             {
@@ -108,23 +108,6 @@ namespace ToDoList.Core.ViewModels.Pages
             else
             {
                 LoginFailed?.Invoke(this, EventArgs.Empty);
-            }
-        }
-
-        /// <summary>
-        /// Hashes the given password using the SHA256 algorithm.
-        /// </summary>
-        private string HashPassword(string password)
-        {
-            if (password == null)
-            {
-                return null;
-            }
-
-            using (var sha256 = System.Security.Cryptography.SHA256.Create())
-            {
-                var hashedBytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-                return System.Convert.ToBase64String(hashedBytes);
             }
         }
 
