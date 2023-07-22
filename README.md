@@ -13,6 +13,8 @@ There is no installation process for this project.
 ## Usage
 To use ToDoList, simply open the project in your development environment and run it. You will need to log in or create a new user account to access the application. Once logged in, you can add, update, and delete tasks using the user interface.
 
+To update, finish or delete a task, first select the task by clicking on the checkbox next to it. Then, use the appropriate button to perform the desired action.
+
 ## Screenshots
 Here are some screenshots of the ToDoList application:
 <table>
